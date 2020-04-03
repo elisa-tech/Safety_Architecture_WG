@@ -3,7 +3,7 @@
  Name        : Edac_app.c
  Author      : gabriele.paoloni@intel.com
  Version     :
- Copyright   : 
+ Copyright   : Copyright (c) 2020, Intel Corporation.
  Description : Hello World in C, Ansi-style
  ============================================================================
  */

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-2.0
 #============================================================================
 # Name        : Edac_app.c
 # Author      : gabriele.paoloni@intel.com

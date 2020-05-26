@@ -61,24 +61,24 @@ uint32_t MemoryGetUeCount(uint64_t *pData)
 
 int main(int argc, char **argv)
 {
-    uint64_t ue_count;
-    struct sigaction sact;
-    int num_sent = 0;
-    sigemptyset(&sact.sa_mask);
-    sact.sa_flags = 0;
-    sact.sa_handler = sigalrm_handler;
-    sigaction(SIGALRM, &sact, NULL);
+	uint64_t ue_count;
+	struct sigaction sact;
+	int num_sent = 0;
+	sigemptyset(&sact.sa_mask);
+	sact.sa_flags = 0;
+	sact.sa_handler = sigalrm_handler;
+	sigaction(SIGALRM, &sact, NULL);
 
-    ualarm(4000, 0);  /* Request SIGALRM in 4msec */
-    while (1) {
-    	MemoryGetUeCount(&ue_count);
-    	if (ue_count) {
-    		printf(">>>>> detected %lu uncorrectable errors\n", ue_count);
-		/* TODO: replace the printf with a call to
-		 * the safe state function               */
-    	}
-    	ualarm(4000, 0); /* Clear the previous counter and request SIGALRM in 4msec */
-        usleep(1000); /* wait 1msec */
-    }
-    exit(0);
+	ualarm(4000, 0);  /* Request SIGALRM in 4msec */
+	while (1) {
+		MemoryGetUeCount(&ue_count);
+		if (ue_count) {
+			printf(">>>>> detected %lu uncorrectable errors\n", ue_count);
+			/* TODO: replace the printf with a call to
+			 * the safe state function               */
+		}
+		ualarm(4000, 0); /* Clear the previous counter and request SIGALRM in 4msec */
+		usleep(1000); /* wait 1msec */
+	}
+	exit(0);
 }

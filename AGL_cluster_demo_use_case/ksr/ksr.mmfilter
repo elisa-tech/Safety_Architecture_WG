@@ -1,0 +1,5 @@
+<filter_conditions>
+    <attribute_contains_condition ATTRIBUTE="ASIL" VALUE="B"/>
+    <attribute_contains_condition ATTRIBUTE="Allocation" VALUE="Kernel"/>
+    <attribute_contains_condition ATTRIBUTE="Type" VALUE="SW"/>
+</filter_conditions>

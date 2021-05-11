@@ -8,6 +8,7 @@ Parses CFlow output to find functions in code
 
 import logging
 import os
+import sys
 import subprocess
 import tempfile
 from helperfunctions import Helper
@@ -22,6 +23,11 @@ class FunctionProcessor:
         self.database = database
         self.args = args
         self.helper = Helper()
+        if not os.path.exists(CFLOW):
+            print("GNU cflow tool not found. Install GNU cflow")
+            print("and change the CFLOW variable in functionprocessor.py to")
+            print("point to it.")
+            sys.exit(1)
 
     def log_file_name(self, shortpath):
         '''Generate the correct log file name.'''

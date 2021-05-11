@@ -79,11 +79,15 @@ class DB:
 
     def get_edges(self, origin):
         '''Retrieve records from the edges table'''
+        '''
         command = "SELECT a.topath, a.tofunc, b.line_coverage, "
         command += "b.branch_coverage, b.line_count, b.branch_count "
         command += "FROM edges a LEFT JOIN coverage "
         command += "b ON a.tofunc = b.func WHERE a.frompath = ? "
         command += "AND a.fromfunc = ?"
+        '''
+        command =  "SELECT topath, tofunc FROM edges "
+        command += "WHERE frompath = ? and fromfunc = ?"
         logging.debug(command)
         self.cur.execute(command, (origin[0], origin[1]))
         results = self.cur.fetchall()

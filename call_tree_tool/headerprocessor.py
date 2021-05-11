@@ -33,8 +33,8 @@ class HeaderProcessor:
             shortpath = strpath[len(self.headers_path) + 1:]
             # the following block is an example of skipping irrelevant files
             if "arch" in shortpath:
-                if "mips" not in shortpath:
+                if "x86" not in shortpath:
                     logging.info("skipping arch file not relatd "
-                          "to mips: %s", shortpath)
+                          "to x86: %s", shortpath)
                     continue
             self.process_file(strpath, shortpath)

@@ -8,6 +8,7 @@ Processes CFlow output to find edges
 
 import logging
 import os
+import sys
 import subprocess
 import tempfile
 from helperfunctions import Helper
@@ -23,6 +24,13 @@ class EdgeProcessor:
         self.helper = Helper()
         self.current_function = []
         self.current_indent = 0
+
+        if not os.path.exists(CFLOW):
+            print("GNU cflow tool not found. Install GNU cflow")
+            print("and change the CFLOW variable in edgeprocessor.py to")
+            print("point to it.")
+            sys.exit(1)
+
         logging.info("starting edge processor")
 
     def log_file_name(self, shortpath):

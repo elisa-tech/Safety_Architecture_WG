@@ -15,8 +15,8 @@ rm -f calltrees-config.h
 #
 # the following lines generate the #define statements according to the configuration
 #
-sed -n 's/\(CONFIG.*\)=y/#define \1/p' $1/prod_output/.config > calltrees-config.h
-sed -n 's/.*\(CONFIG.*\) is not set/#undef \1/p' $1/prod_output/.config >> calltrees-config.h
+sed -n 's/\(CONFIG.*\)=y/#define \1/p' $1/.config > calltrees-config.h
+sed -n 's/.*\(CONFIG.*\) is not set/#undef \1/p' $1/.config >> calltrees-config.h
 
 #
 # analyze file, functions, edges and complexity

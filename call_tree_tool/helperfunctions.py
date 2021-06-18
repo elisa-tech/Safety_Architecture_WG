@@ -6,6 +6,7 @@ Helper (utility) functions
 '''
 
 import os
+import subprocess
 import sys
 import logging
 
@@ -64,3 +65,39 @@ class Helper:
                                   "file: %s line: %s", infile_name, line)
                 outfile.write(line)
             outfile.flush()
+
+    def pre_process_file(self, linux_src_path, source_shortpath):
+        '''
+        Run pre processor on source file.
+        :linux_src_path: The path to linux sources
+        :source_shortpath: The name of the source file to preprocess.
+        '''
+
+        # pre-processed files extension is .i
+        preproc_source_shortpath = source_shortpath.replace(".c", ".i")
+        preproc_source_fullpath = os.path.join(linux_src_path, preproc_source_shortpath)
+        if not os.path.exists(preproc_source_fullpath):
+            # TODO: check a better way to compile single source without having to cd into root dir
+            cur_dir = os.getcwd()
+            command = "make %s" % preproc_source_shortpath
+            # Cd Linux root dir to trigger make command
+            os.chdir(linux_src_path)
+            try:
+                output = subprocess.run(command,
+                                        capture_output=True, text=True,
+                                        check=True, shell=True)
+            except subprocess.CalledProcessError as e:
+                os.chdir(cur_dir)
+                logging.error("Failed executing preprocessor on file %s: %s" % (source_shortpath, e))
+                return None
+            # Cd to previous path
+            os.chdir(cur_dir)
+            with open(preproc_source_fullpath, 'r') as f_readonly:
+                lines = f_readonly.readlines()
+
+            with open(preproc_source_fullpath, 'w') as f:
+                for line in lines:
+                    if not line.startswith('#'):
+                        f.write(line)
+
+        return preproc_source_fullpath

@@ -1,0 +1,23 @@
+funcParser Release Notes
+-------------------------------------------------------------------------------
+
+Alpha Release v1.0 feature set:
+- Specification of SW module(s) and source file(s) to scan by means of JSON
+  configuration file.
+- Parse (C language) source files looking for FFI relevant information, such
+  as:
+	- function definitions
+	- function calls
+	- function pointers
+	- function macros
+- Dump of FFI relevant information into SQLite database. This allows to query
+  specific information per source file or SW module base.
+
+Known limitation(s):
+- Compile time operators maybe listed as function calls (e.g. sizeof()).
+- Missing source files recursive search in sub folders
+- Macros resolution: as of now function macros are stored in dedicated table
+  (Functions_Macros). No support yet to run tool against preprocessed files (
+  only .c and .h files are currently supported).
+- Resolution of function pointers (to be discussed if this feature falls into
+  funcParser static analysis of source code)

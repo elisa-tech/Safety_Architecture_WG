@@ -80,6 +80,10 @@ The shell script: calltrees-elisa.sh performs all the aforementioned commands in
 * List of files to scan (the linuxbuild.log file).
 * Path to the sqlite3 DB file
 
+### Functions filter
+In order to handle some special cases detected as functions but considered false positives (e.g. Compiler extensions to C language), caltrees exposes a filter file where the user
+can list the cases he does not want to consider as function. File is present in calltrees root folder and provded empty by default. Edit the file insterting patterns to filter (if any) followed by a newline (list separator).
+
 ### Print a call tree
 To print a calltree to stdout use this command:
 python ./calltrees.py --draw-function <function> --draw-depth <depth> --loglevel <log level> <database file>

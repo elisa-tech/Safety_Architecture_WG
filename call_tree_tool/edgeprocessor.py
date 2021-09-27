@@ -14,7 +14,7 @@ import tempfile
 from helperfunctions import Helper
 
 INDENTATION = 4
-CFLOW = "/usr/local/bin/cflow"
+CFLOW = "/usr/bin/cflow"
 
 class EdgeProcessor:
     '''Process files to detect calling relations between functions.'''
@@ -50,7 +50,13 @@ class EdgeProcessor:
 
         funcrecord = self.database.get_function_by_name(funcname)
         if not funcrecord:
-            funcdata = ("unknown", funcname)
+            # check if function is in filter list (E.g. Compiler extensions to C language)
+            with open("func_filter", "r") as filtered_funcs:
+                 if funcname in filtered_funcs.read():
+                     logging.debug("Filtering function %s...", funcname)
+                 else:
+                    funcdata = ("unknown", funcname)
+            return
         else:
             funcdata = (funcrecord[0][1], funcname)
 
@@ -93,16 +99,18 @@ class EdgeProcessor:
     def process_file(self, shortpath, fullpath):
         '''Process a file.'''
         logging.info("index edges for %s", shortpath)
-        with tempfile.NamedTemporaryFile(mode='w+t', dir=os.getcwd()) as temp:
-            # remove all #include statements from the source file
-            self.helper.fix_source_file(fullpath, temp, temp.name)
-            try:
-                output = subprocess.run([CFLOW, temp.name],
-                                        capture_output=True, text=True,
-                                        check=True, shell=False)
-            except subprocess.CalledProcessError:
-                logging.error("Failed executing cflow")
-                return
+        pre_processed_file = self.helper.pre_process_file(self.args.sourcepath, shortpath)
+        if pre_processed_file is None:
+            logging.warning("Skipping edges for %s since preprocessor run failed..." % shortpath)
+            return
+
+        try:
+            output = subprocess.run([CFLOW, '-i', '-s', pre_processed_file],
+                                    capture_output=True, text=True,
+                                    check=True, shell=False)
+        except subprocess.CalledProcessError:
+            logging.error("Failed executing cflow")
+            return
 
         self.helper.write_to_log(self.log_file_name(shortpath),
                                  self.args.loglevel, output.stdout)

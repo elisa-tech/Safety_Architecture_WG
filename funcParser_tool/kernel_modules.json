@@ -1,0 +1,29 @@
+{
+    "modules": [
+        {
+            "name": "fs",
+            "source_files": [
+                {
+                    "path": "fs/*"
+                },
+                {
+                    "path": "include/linux/file.h"
+                }
+            ]
+        },
+        {
+            "name": "wdt",
+            "source_files": [
+                {
+                    "path": "drivers/watchdog/watchdog_core.c"
+                },
+                {
+                    "path": "drivers/watchdog/watchdog_core.h"
+                },
+                {
+                    "path": "drivers/watchdog/watchdog_dev.c"
+                }
+            ]
+        }
+    ]
+}

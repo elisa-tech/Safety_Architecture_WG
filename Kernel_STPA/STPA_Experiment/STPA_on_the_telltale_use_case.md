@@ -119,162 +119,75 @@ The table below defines the controllers’ responsibilities according to the inp
 
 
 
-| Input CA                                                                                                                                               | Controller of the output CA | Responsibilities                                                                                                                                                                                                                                                                                                                                            | Output CA or
 
-Feedback                                                                                                                                                        | System Constraints |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| None                                                                                                                                                   | Telltale Requester          | every 200 msec shall send the correct telltale request msg to “Host HW” and to “Telltale Monitor”                                                                                                                                                                                                                                                           | CA1 represent "correct telltale request msg" to “Telltale monitor” and “Host HW”                                                                                              | SC1, SC2           |
-| CA6 represent actions that Linux performs on the processes (schedule, block etc): Linux wake up the blocking read of the Telltale rendering            | Telltale Rendering          | shall read the telltale requester status every 200 msec and execute the rendering algorithm
+| Input CA | Controller of the output CA | Responsibilities | Output CA or Feedback | System Constraints |
+|---|---|---|---|---|
+| None | Telltale Requester | every 200 msec shall send the correct telltale request msg to “Host HW” and to “Telltale Monitor” | CA1 represent "correct telltale request msg" to “Telltale monitor” and “Host HW” | SC1, SC2 |
+| CA6 represent actions that Linux performs on the processes (schedule, block etc): Linux wake up the blocking read of the Telltale rendering | Telltale Rendering | shall read the telltale requester status every 200 msec and execute the rendering algorithm| CA5b TBD syscalls required to render | SC2 |
+| CA1 represent "correct telltale request msg" to “Telltale monitor” and “Host HW” | Host HW | Host HW shall provide the "correct telltale request msg” to Linux | CA9 represent the interrupt/event sent from Host HW to Linux: Message received | SC1, SC2|
+| CA9 represent the interrupt/event sent from Host HW to Linux: Message received| Linux | Linux shall provide the "correct telltale request msg” to Telltale rendering | CA6 represent actions that Linux performs on the processes (schedule, block etc): Linux wake up the blocking read of the Telltale rendering | SC1, SC2|
+| CA5b TBD syscalls required to render | Linux | Shall process the rendering syscalls and drive the rendering process on the HW accordingly| - CA7 TBD HW specific operation for rendering the telltale <p>&nbsp;</p> - f2 represent TBD feedbacks related to CA5b | SC2 |
+| CA7 TBD HW specific operation for rendering the telltale | Host HW | Shall render the telltale according to the drivers command from Linux | - CA2 represents the displayed telltale <p>&nbsp;</p> - f1 represent TBD feedbacks related to CA7 | SC2 |
+| CA1 represent "correct telltale request msg" to “Telltale monitor” and “Host HW” <p>&nbsp;</p> CA2 represents the displayed telltale | Telltale Monitor | Every 200 msec shall read the displayed telltale from “Controlled Process - Host HW” and compare it against the msg from “Telltale Requester”. A Nok msg shall be sent if:<br><br> - No telltale has been displayed <br><br> - A wrong or corrupted telltale has been displayed <br> <br>An Ok msg shall be sent if the displayed telltale matches the requested one | CA3 Ok/Nok signal produced, encapsulated using E2E and sent over ethernet | SC1, SC2 |
+| CA3 Ok/Nok signal produced, encapsulated using E2E and sent over ethernet | Host HW | Shall generate a package received interrupt every time a package is received | CA9 represent the interrupt/event sent from Host HW to Linux: Message received | SC1, SC2 |
+| CA9 represent the interrupt/event sent from Host HW to Linux: Ethernet Controller IRQ | Linux | Execute the ISR associated to the IRQ or Exception: Ethernet Driver ISR | CA6 represent actions that Linux performs on the processes (schedule, block etc). Linux wake up the blocking read of the Safety App | SC1, SC2 |
+| CA9 represent the interrupt/event sent from Host HW to Linux: Timer Interrupt | Linux | Execute the ISR associated to the IRQ or Exception: Scheduler ISR | CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process | SC1, SC2 |
+| CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process | Safety App | Shall setup an external WTD to trigger after 200msec | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):syscalls required to setup the Watchdog; open() | SC1, SC2 |
+| CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process <p>&nbsp;</p> f2 represent feedbacks related to CA5c: open returns success | Safety App | Shall setup an external WTD to trigger after 200msec | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):syscalls required to setup the Watchdog; ioctl() | SC1, SC2 |
+| CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):syscalls required to setup the Watchdog;open() | Linux | Linux shall reserve the WTD resource for exclusive use of “Safety App” | CA7 performs actions like memory, data structures and driver handling: setup the file descriptor for the watchdog associated to the safety app and the associated permissions | SC1, SC2 |
+| CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):syscalls required to setup the Watchdog;ioctl() | Linux | Linux shall setup the WTD timeout according to the input parameter from the Safety App | CA7 performs actions like memory, data structures and driver handling: program the WTD according to the timeout from the Safety App | SC1, SC2 |
+| CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):syscalls required to setup the Watchdog;ioctl() | Linux | Linux shall start the WTD after the timeout from the Safety App has been setup | CA7 performs actions like memory, data structures and driver handling: start the WTD device associated to the Safety App | SC1, SC2 |
+| CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process <p>&nbsp;</p> f2 represent feedbacks related to CA5c: ioctl() returns success| Safety App | Safety App shall read the Ok/NOk message from the Telltale Monitor every 200 msec | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App): Safety App perform a blocking reads for the packet | SC1, SC2 |
+| CA6 represents actions that Linux performs on the processes (schedule, block etc). Linux wake up the blocking read of the Safety App | Safety App | Safety App shall decode the Ok/NOk message: if the message integrity check is fine and the content is ‘OK’, it shall pet the watchdog | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App): Safety App pets the watchdog (write the wtd) | SC1, SC2 |
+| CA5c represents actions (syscall) requested by safety related processes in the Safety App: Safety App pets the watchdog (write the wtd) | Linux | Linux shall refresh the WTD upon request by the Safety App | CA8 refresh the WTD| SC1, SC2 |
+| None (expired WDT) | Host HW | Host HW shall force the reboot of the system | CA4 represents the request to reboot the system| SC1, SC2 |
+| None | Linux | Linux startup operations: init | CA7 performs actions like memory, data structures and driver handling | SC1, SC2 |
+| <br> | <br> | <br> | <br> | <br>|
+| TBD | NSR App | TBD | TBD | TBD |
 
-<br>                                                                                                                                                                                                                                                           | CA5b TBD syscalls required to render                                                                                                                                          | SC2                |
-| CA6 represent actions that Linux performs on the processes (schedule, block etc)                                                                       |
-| CA1 represent "correct telltale request msg" to “Telltale monitor” and “Host HW”                                                                       | Host HW                     | Host HW shall provide the "correct telltale request msg” to Linux                                                                                                                                                                                                                                                                                           | CA9 represent the interrupt/event sent from Host HW to Linux: Message received                                                                                                | SC1, SC2           |
-| CA9 represent the interrupt/event sent from Host HW to Linux: Message received                                                                         | Linux                       | Linux shall provide the "correct telltale request msg” to Telltale rendering                                                                                                                                                                                                                                                                                | CA6 represent actions that Linux performs on the processes (schedule, block etc): Linux wake up the blocking read of the Telltale rendering                                   | SC1, SC2           |
-| CA5b TBD syscalls required to render                                                                                                                   | Linux                       | Shall process the rendering syscalls and drive the rendering process on the HW accordingly                                                                                                                                                                                                                                                                  | CA7 TBD HW specific operation for rendering the telltale                                                                                                                      | SC2                |
-| f2 represent TBD feedbacks related to CA5b                                                                                                             |
-| CA7 TBD HW specific operation for rendering the telltale                                                                                               | Host HW                     | Shall render the telltale according to the drivers command from Linux                                                                                                                                                                                                                                                                                       | CA2 represents the displayed telltale                                                                                                                                         | SC2                |
-| f1 represent TBD feedbacks related to CA7                                                                                                              |
-| CA1 represent "correct telltale request msg"  to “Telltale monitor” and “Host HW”
+### Phase3: “Identifying Unsafe Control Actions” 
+**Disclaimer: this is an incomplete Phase3 intended to kick-off the analysis inside the Kernel.**
 
-<br>                                                                | Telltale Monitor            | Every 200 msec shall read the displayed telltale from “Controlled Process - Host HW” and compare it against the msg from “Telltale Requester”.
+“Definition: 
+An Unsafe Control Action (UCA) is a control action that, in a particular context and worst-case environment, will lead to a hazard”
 
-A Nok msg shall be sent if:
-
-*   No telltale has been displayed
-    
-*   A wrong or corrupted telltale has been displayed
-    
-
-An Ok msg shall be sent if the displayed telltale matches the requested one | CA3 Ok/Nok signal produced, encapsulated using E2E and sent over ethernet                                                                                                     | SC1, SC2           |
-| CA2 represents the displayed telltale                                                                                                                  |
-| CA3 Ok/Nok signal produced, encapsulated using E2E and sent over ethernet                                                                              | Host HW                     | Shall generate a package received interrupt every time a package is received                                                                                                                                                                                                                                                                                | CA9 represent the interrupt/event sent from Host HW to Linux: Message received                                                                                                | SC1, SC2           |
-| CA9 represent the interrupt/event sent from Host HW to Linux: Ethernet Controller IRQ                                                                  | Linux                       | Execute the ISR associated to the IRQ or Exception: Ethernet Driver ISR                                                                                                                                                                                                                                                                                     | CA6 represent actions that Linux performs on the processes (schedule, block etc). Linux wake up the blocking read of the Safety App                                           | SC1, SC2           |
-| CA9 represent the interrupt/event sent from Host HW to Linux: Timer Interrupt                                                                          | Linux                       | Execute the ISR associated to the IRQ or Exception: Scheduler ISR                                                                                                                                                                                                                                                                                           | CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process                                                                     | SC1, SC2           |
-| CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process                                              | Safety App                  | Shall setup an external WTD to trigger after 200msec                                                                                                                                                                                                                                                                                                        | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):<br>syscalls required to setup the Watchdog;
-
-open()                        | SC1, SC2           |
-| CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process                                              | Safety App                  | Shall setup an external WTD to trigger after 200msec                                                                                                                                                                                                                                                                                                        | <br>
-
-CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):<br>syscalls required to setup the Watchdog;
-
-ioctl()                 | SC1, SC2           |
-| f2 represent feedbacks related to CA5c: open returns success                                                                                           |
-| CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):<br>syscalls required to setup the Watchdog;
-
-open() | Linux                       | Linux shall reserve the WTD resource for exclusive use of “Safety App”                                                                                                                                                                                                                                                                                      | CA7 performs actions like memory, data structures and driver handling: setup the file descriptor for the watchdog associated to the safety app and the associated permissions | SC1, SC2           |
-| CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):
-
-syscalls required to setup the Watchdog;
-
-ioctl()  | Linux                       | Linux shall setup the WTD timeout according to the input parameter from the Safety App                                                                                                                                                                                                                                                                      | CA7 performs actions like memory, data structures and driver handling: program the WTD according to the timeout from the Safety App                                           | SC1, SC2           |
-| CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App):
-
-syscalls required to setup the Watchdog;
-
-ioctl()  | Linux                       | Linux shall start the WTD after the timeout from the Safety App has been setup                                                                                                                                                                                                                                                                              | CA7 performs actions like memory, data structures and driver handling: start the WTD device associated to the Safety App                                                      | SC1, SC2           |
-| CA6 represent actions that Linux performs on the processes (schedule, block etc): Scheduling of a process                                              | Safety App                  | Safety App shall read the Ok/NOk message from the Telltale Monitor every 200 msec                                                                                                                                                                                                                                                                           | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App): Safety App perform a blocking reads for the packet                         | SC1, SC2           |
-| f2 represent feedbacks related to CA5c: ioctl() returns success                                                                                        |
-| CA6 represents actions that Linux performs on the processes (schedule, block etc). Linux wake up the blocking read of the Safety App                   | Safety App                  | Safety App shall decode the Ok/NOk message: if the message integrity check is fine and the content is ‘OK’, it shall pet the watchdog                                                                                                                                                                                                                       | CA5c represent actions (syscall) requested by processes (NSR App, Telltale Rendering, Safety App): Safety App pets the watchdog (write the wtd)                               | SC1, SC2           |
-| CA5c represents actions (syscall) requested by safety related processes in the Safety App: Safety App pets the watchdog (write the wtd)                | Linux                       | Linux shall refresh the WTD upon request by the Safety App                                                                                                                                                                                                                                                                                                  | CA8 refresh the WTD
-
-<br>                                                                                                                                                     | SC1, SC2           |
-| None (expired WDT)                                                                                                                                     | Host HW                     | Host HW shall force the reboot of the system                                                                                                                                                                                                                                                                                                                | CA4 represents the request to reboot the system
-
-<br>                                                                                                                         | SC1, SC2           |
-| None                                                                                                                                                   | Linux                       | Linux startup operations: init                                                                                                                                                                                                                                                                                                                              | CA7 performs actions like memory, data structures and driver handling                                                                                                         | SC1, SC2           |
-|                                                                                                                                                        |                             |                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                               |                    |
-| TBD  
-
-
-
-
-
-
-
-
-Phase3: “Identifying Unsafe Control Actions” 
-Disclaimer: this is an incomplete Phase3 intended to kick-off the analysis inside the Kernel.
-
-“Definition: An Unsafe Control Action (UCA) is a control action that, in a particular context and worst-case environment, will lead to a hazard”
 Notation: 
-unsafe control actions are identified by mean of the same ID of control actions prefixed by the ‘U’ character: e.g. the ID of unsafe CA6 would be “UCA6”.
-Unsafe control actions descriptions follow the following format:
-ID - <source controller> , <unsafe action>, <context information>, <[hazard description]>, <[hazard ID]>. E.g
-<UCA7.1> - <Linux> <misses to set the watchdog timeout> hence <the WTD could stay set to a previously programmed timeout shorter than the one required by the safety app> and <[the wtd will not trigger if a telltale monitor message is late]><[H1][H2]>
+- Unsafe control actions are identified by mean of the same ID of control actions prefixed by the ‘U’ character: e.g. the ID of unsafe CA6 would be “UCA6”.
+- Unsafe control actions descriptions follow the following format:
+
+`ID - <source controller> , <unsafe action>, <context information>, <[hazard description]>, <[hazard ID]>`
+
+E.g.:
+
+`<UCA7.1> - <Linux> <misses to set the watchdog timeout> hence <the WTD could stay set to a previously programmed timeout shorter than the one required by the safety app> and <[the wtd will not trigger if a telltale monitor message is late]><[H1][H2]>`
 
 
-Table of unsafe control actions
-Note: the table below only focuses on CA7 since it is sufficient to derive some Linux constraints to kick-off another round of analysis inside the Kernel.
+### Table of unsafe control actions
+**Note:** the table below only focuses on CA7 since it is sufficient to derive some Linux constraints to kick-off another round of analysis inside the Kernel.
 
-Control Action
-Not providing causes hazard
-Providing Causes Hazard
-Too early, too late, out of order
-Stopped too soon, applied too long
-CA7 performs actions like memory, data structures and driver handling: program the WTD according to the timeout from the Safety App
-UCA7.1 - Linux misses to set the watchdog timeout hence the WTD could stay set to a previously programmed timeout shorter than the one required by the safety app and [the wtd will not trigger if a telltale monitor message is late][H1][H2]
+| Control Action | Not providing causes hazard | Providing Causes Hazard | Too early, too late, out of order | Stopped too soon, applied too long |
+|---|---|---|---|---|
+| CA7 performs actions like memory, data structures and driver handling: <br> *program the WTD according to the timeout from the Safety App* | UCA7.1 - Linux misses to set the watchdog timeout hence the WTD could stay set to a previously programmed timeout shorter than the one required by the safety app and [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] | UCA7.2 - Linux program the WTD with a longer timeout than the one required by the safety app, hence [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] <p>&nbsp;</p> UCA7.3 - Linux sets the watchdog timeout for the wrong WTD device, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] <p>&nbsp;</p> UCA7.4 - Linux performs the watchdog timeout operation on an ASILB HW IP different from the target WTD, [*possibly resulting in ASILB data corruption*][H1][H2] | UCA7.5 - Linux could reset the watchdog timeout while the safe telltale rendering is already ongoing (spurious timeout setup), hence [*the wtd could not trigger if a telltale monitor message is late prior to the right timeout being set*][H1][H2] <p>&nbsp;</p> UCA7.6 - Linux sets the watchdog timeout after the WTD is started to monitor the telltale message, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] | |
 
 
+### Controllers constraints to prevent or detect unsafe control actions.
 
-UCA7.2 - Linux program the WTD with a longer timeout than the one required by the safety app, hence [the wtd will not trigger if a telltale monitor message is late][H1][H2]
+**Note:** the ASIL Level is derived by the hazards linked to the unsafe control actions (see H1 and H2).
 
-UCA7.3 - Linux sets the watchdog timeout for the wrong WTD device, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [the wtd will not trigger if a telltale monitor message is late][H1][H2]
-
-UCA7.4 - Linux performs the watchdog timeout operation on an ASILB HW IP different from the target WTD, [possibly resulting in ASILB data corruption][H1][H2]
-UCA7.5 - Linux could reset the watchdog timeout while the safe telltale rendering is already ongoing (spurious timeout setup), hence [the wtd could not trigger if a telltale monitor message is late prior to the right timeout being set][H1][H2]
-
-UCA7.6 - Linux sets the watchdog timeout after the WTD is started to monitor the telltale message, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [the wtd will not trigger if a telltale monitor message is late][H1][H2]
-
-
-
-
-
-Controllers constraints to prevent or detect unsafe control actions.
-
-Note: the ASIL Level is derived by the hazards linked to the unsafe control actions (see H1 and H2).
-
-Unsafe Control Actions
-Controller Constraints
-ASIL Level
-UCA7.1 - Linux misses to set the watchdog timeout hence the WTD could stay set to a previously programmed timeout shorter than the one required by the safety app and [the wtd will not trigger if a telltale monitor message is late][H1][H2]
+| Unsafe Control Actions | Controller Constraints | ASIL Level |
+|---|---|---|
+| UCA7.1 - Linux misses to set the watchdog timeout hence the WTD could stay set to a previously programmed timeout shorter than the one required by the safety app and [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] | Linux-C1: When the ioctl command is invoked by the Safety App, Linux shall update the timeout value on the watchdog device corresponding to the input file descriptor according to the input timeout parameter passed to the ioctl <p>&nbsp;</p> Linux-C2: only after successfully setting the watchdog timeout value Linux shall return a success feedback (ioctls returns 0) to the Safety App (so the Safety App knows that it can start the safety operation). In any other case the ioctl() shall return an error condition | B |
+| UCA7.2 - Linux program the WTD with a longer timeout than the one required by the safety app, hence [*the wtd will not trigger if a telltale monitor message is late*][H1][H2]| See: Linux-C1 and Linux-C2 | B |
+| UCA7.3 - Linux sets the watchdog timeout for the wrong WTD device, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] | See: Linux-C1 and Linux-C2 | B |
+| UCA7.4 - Linux performs the watchdog timeout operation on an ASILB HW IP different from the target WTD, [*possibly resulting in ASILB data corruption*][H1][H2] | See: Linux-C1 and Linux-C2 | B |
+| UCA7.5 - Linux could reset the watchdog timeout while the safe telltale rendering is already ongoing (spurious timeout setup), hence [*the wtd could not trigger if a telltale monitor message is late prior to the right timeout being set*][H1][H2] | Linux-C3: Linux shall never interact with the target WTD device unless a file operation is invoked on the associated file descriptor <p>&nbsp;</p> **Note:** UCAs deriving from NSR or QM apps wrongly accessing the WTD device will be covered by different constraints on Linux to set the right permissions on the device files | B |
+| UCA7.6 - Linux sets the watchdog timeout after the WTD is started to monitor the telltale message, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [*the wtd will not trigger if a telltale monitor message is late*][H1][H2] | See: Linux-C2 | B |
 
 
-Linux-C1: When the ioctl command is invoked by the Safety App, Linux shall update the timeout value on the watchdog device corresponding to the input file descriptor according to the input timeout parameter passed to the ioctl
+## Phase4: “Identifying loss scenarios”
 
-Linux-C2: only after successfully setting the watchdog timeout value Linux shall return a success feedback (ioctls returns 0) to the Safety App (so the Safety App knows that it can start the safety operation).
-In any other case the ioctl() shall return an error condition
-B
-UCA7.2 - Linux program the WTD with a longer timeout than the one required by the safety app, hence [the wtd will not trigger if a telltale monitor message is late][H1][H2]
-
-
-See: Linux-C1 and Linux-C2
-B
-UCA7.3 - Linux sets the watchdog timeout for the wrong WTD device, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [the wtd will not trigger if a telltale monitor message is late][H1][H2]
-
-
-See: Linux-C1 and Linux-C2
-B
-UCA7.4 - Linux performs the watchdog timeout operation on an ASILB HW IP different from the target WTD, [possibly resulting in ASILB data corruption][H1][H2]
-
-
-See: Linux-C1 and Linux-C2
-B
-UCA7.5 - Linux could reset the watchdog timeout while the safe telltale rendering is already ongoing (spurious timeout setup), hence [the wtd could not trigger if a telltale monitor message is late prior to the right timeout being set][H1][H2]
-
-
-Linux-C3: Linux shall never interact with the target WTD device unless a file operation is invoked on the associated file descriptor 
-
-Note: UCAs deriving from NSR or QM apps wrongly accessing the WTD device will be covered by different constraints on Linux to set the right permissions on the device files 
-B
-UCA7.6 - Linux sets the watchdog timeout after the WTD is started to monitor the telltale message, hence the WTD could stay set to a previously programmed timeout longer than the one required by the safety app and [the wtd will not trigger if a telltale monitor message is late][H1][H2]
-
-
-See: Linux-C2
-B
-
-
-Phase4: “Identifying loss scenarios”
 In the current scope we only focus on losses that derive from systematic failures of the Kernel (hence SW bugs).
+
 With respect to this experimental and incomplete system level STPA loss scenarios are not analyzed since they would not provide relevant information to initiate a Kernel level analysis
 
-Reference: “STPA Handbook, COPYRIGHT © 2018 BY NANCY LEVESON AND JOHN THOMAS.  ALL RIGHTS RESERVED. ” 
+Reference: [STPA Handbook, COPYRIGHT © 2018 BY NANCY LEVESON AND JOHN THOMAS.  ALL RIGHTS RESERVED.](https://psas.scripts.mit.edu/home/get_file.php?name=STPA_handbook.pdf) 

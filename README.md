@@ -6,6 +6,7 @@ According to technical safety requirements produced by domain specific WGs the f
 
 ### Work-In-Progress material
 work in progress material is stored in the Google Drive repo here: https://drive.google.com/drive/u/0/folders/137-9__2BUFZbu--N3jZM418ILetC971s
+
 As the material is finalized it is published in this github repo
 
 ### Meetings

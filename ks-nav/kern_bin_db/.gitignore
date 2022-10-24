@@ -1,0 +1,5 @@
+System.map
+kern_bin_db
+sysfinder.go.bak
+vmlinux*
+*.swp

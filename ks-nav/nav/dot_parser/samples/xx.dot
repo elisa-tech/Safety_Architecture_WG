@@ -1,0 +1,6 @@
+digraph G {
+rankdir="LR"
+"__x64_sys_getpid"->"__task_pid_nr_ns" 
+"__task_pid_nr_ns"->"__rcu_read_lock" 
+"__task_pid_nr_ns"->"__rcu_read_unlock" 
+}

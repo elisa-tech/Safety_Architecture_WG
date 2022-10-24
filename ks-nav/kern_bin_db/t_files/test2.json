@@ -1,0 +1,15 @@
+{
+"LinuxWDebug":		"vmlinux",
+"LinuxWODebug":		"vmlinux.work",
+"StripBin":		"/usr/bin/aarch64-linux-gnu-strip",
+"DBURL":		"dbs.hqhome163.com",
+"DBPort":		5432,
+"DBUser":		"alessandro",
+"DBPassword":		"<password>",
+"DBTargetDB":		"kernel_bin",
+"Maintainers_fn":	"MAINTAINERS",
+"KConfig_fn":		"include/generated/autoconf.h",
+"KMakefile":		"Makefile",
+"Mode":			15,
+"Note":			"upstream"
+}

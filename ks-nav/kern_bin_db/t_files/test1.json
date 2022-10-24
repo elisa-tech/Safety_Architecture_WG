@@ -1,0 +1,15 @@
+{
+"LinuxWDebug":		"dummy",
+"LinuxWODebug":		"dummy",
+"StripBin":		"dummy",
+"DBURL":		"dummy",
+"DBPort":		0,
+"DBUser":		"dummy",
+"DBPassword":		"dummy",
+"DBTargetDB":		"dummy",
+"Maintainers_fn":	"dummy",
+"KConfig_fn":		"dummy",
+"KMakefile":		"dummy",
+"Mode":			0,
+"Note":			"dummy"
+}

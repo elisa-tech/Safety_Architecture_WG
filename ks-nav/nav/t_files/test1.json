@@ -1,0 +1,13 @@
+{
+"DBURL":"dummy",
+"DBPort":1234,
+"DBUser":"dummy",
+"DBPassword":"dummy",
+"DBTargetDB":"dummy",
+"Symbol":"dummy",
+"Instance":1234,
+"Mode":1234,
+"Excluded": ["dummy1", "dummy2", "dummy3"],
+"MaxDepth":1234,
+"Jout": "JsonOutputPlain"
+}

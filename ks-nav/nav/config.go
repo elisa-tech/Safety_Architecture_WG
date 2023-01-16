@@ -66,9 +66,11 @@ type configuration struct {
 	DBTargetDB	string
 	Symbol		string
 	Instance	int
-	Mode		int
-	Excluded	[]string
-	MaxDepth	uint
+	Mode		OutMode
+	Excluded_before	[]string
+	Excluded_after	[]string
+	Target_sybsys	[]string
+	MaxDepth	int
 	Jout		string
 	cmdlineNeeds	map[string] bool
 }
@@ -83,7 +85,9 @@ var	Default_config  configuration = configuration{
 	Symbol:		"",
 	Instance:	0,
 	Mode:		PRINT_SUBSYS,
-	Excluded:	[]string{"rcu_.*"},
+	Excluded_before:	[]string{},
+	Excluded_after:	[]string{},
+	Target_sybsys:	[]string{},
 	MaxDepth:	0,		//0: no limit
 	Jout:		"GraphOnly",
 	cmdlineNeeds:	map[string] bool{},
@@ -113,6 +117,7 @@ func cmd_line_item_init() ([]cmd_line_items){
 	push_cmd_line_item("-d", "Forecs use specified DBhost",			true,  false,	func_DBHost,	&res)
 	push_cmd_line_item("-p", "Forecs use specified DBPort",			true,  false,	func_DBPort,	&res)
 	push_cmd_line_item("-m", "Sets display mode 2=subsystems,1=all",	true,  false,	func_Mode,	&res)
+	push_cmd_line_item("-x", "Specify Max depth in call flow exploration",	true,  false,	func_depth,	&res)
 	push_cmd_line_item("-h", "This Help",					false, false,	func_help,	&res)
 
 	return res
@@ -170,6 +175,18 @@ func func_DBPort	(conf *configuration, port []string)	(error){
 	return nil
 }
 
+func func_depth		(conf *configuration, depth []string)	(error){
+	s, err := strconv.Atoi(depth[0])
+	if err!=nil {
+		return err
+		}
+	if s<0 {
+		return errors.New("Depth must be >= 0")
+		}
+	(*conf).MaxDepth=s
+	return nil
+}
+
 func func_instance	(conf *configuration, instance []string)    (error){
 	s, err := strconv.Atoi(instance[0])
 	if err!=nil {
@@ -184,10 +201,10 @@ func func_Mode		(conf *configuration, mode []string)    (error){
 	if err!=nil {
 		return err
 		}
-	if s<1 || s>2 {
+	if OutMode(s)<PRINT_ALL || OutMode(s)>=OutModeLast {
 		return errors.New("unsupported mode")
 		}
-	(*conf).Mode=s
+	(*conf).Mode=OutMode(s)
 	return nil
 }
 

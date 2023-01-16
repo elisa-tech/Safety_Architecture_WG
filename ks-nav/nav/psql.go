@@ -40,11 +40,30 @@ import (
 	_ "github.com/lib/pq"
 )
 
+type OutMode int64
+
 // Const values for configuration mode field.
 const (
-	PRINT_ALL int	= 1
-	PRINT_SUBSYS	= 2
+	_		OutMode		= iota
+	PRINT_ALL
+	PRINT_SUBSYS
+	PRINT_SUBSYS_WS
+	PRINT_TARGETED
+	OutModeLast
 )
+const 	SUBSYS_UNDEF	= "The REST"
+
+// parent node
+type Node struct {
+	Subsys		string
+	Symbol		string
+	Source_ref	string
+	Address_ref	string
+}
+type AdjM struct {
+	l		Node
+	r		Node
+}
 
 // Sql connection configuration
 type Connect_token struct{
@@ -62,11 +81,15 @@ type Entry struct {
 	Type		string
 	Subsys		[]string
 	Fn		string
+	Source_ref	string
+	Address_ref	string
 }
 
 type Edge struct {
-	Caller	int
-	Callee	int
+	Caller		int
+	Callee		int
+	Source_ref	string
+	Address_ref	string
 }
 
 type Cache struct {
@@ -135,7 +158,7 @@ func get_successors_by_id(db *sql.DB, symbol_id int, instance int, cache Cache )
 		return res, nil
 		}
 
-	query:="select caller, callee from xrefs where caller =$1 and xref_instance_id_ref=$2"
+	query:="select caller, callee, source_line, ref_addr from xrefs where caller =$1 and xref_instance_id_ref=$2"
 	rows, err := db.Query(query, symbol_id, instance)
 	if err!= nil {
 		panic(err)
@@ -143,12 +166,14 @@ func get_successors_by_id(db *sql.DB, symbol_id int, instance int, cache Cache )
 	defer rows.Close()
 
 	for rows.Next() {
-		if err := rows.Scan(&e.Caller, &e.Callee); err != nil {
-			fmt.Println("this error hit1 ")
+		if err := rows.Scan(&e.Caller, &e.Callee, &e.Source_ref, &e.Address_ref); err != nil {
+			fmt.Println("get_successors_by_id: this error hit1 ", err)
 			return nil, err
 			}
-		successors,_ := get_entry_by_id(db, e.Callee, instance, cache.Entries)
-		res=append(res, successors )
+		successor,_ := get_entry_by_id(db, e.Callee, instance, cache.Entries)
+		successor.Source_ref = e.Source_ref
+		successor.Address_ref = e.Address_ref
+		res=append(res, successor )
 		}
 	if err = rows.Err(); err != nil {
 		fmt.Println("this error hit2 ")
@@ -186,29 +211,36 @@ func removeDuplicate(list []Entry) []Entry {
 
 // Given a function returns the lager subsystem it belongs
 func get_subsys_from_symbol_name(db *sql.DB, symbol string, instance int, subsytems_cache map[string]string)(string, error){
-	var res string
+	var ty,sub string
 
 	if res, ok := subsytems_cache[symbol]; ok {
 		return res, nil
 		}
-	query:="select subsys_name from (select count(*)as cnt, subsys_name from tags where subsys_name in (select subsys_name from symbols, "+
+	query:="select (select symbol_type from symbols where symbol_name=$1 and symbol_instance_id_ref=$2) as type, subsys_name from "+
+		"(select count(*) as cnt, subsys_name from tags where subsys_name in (select subsys_name from symbols, "+
 		"tags where symbols.symbol_file_ref_id=tags.tag_file_ref_id and symbols.symbol_name=$1 and symbols.symbol_instance_id_ref=$2) "+
 		"group by subsys_name order by cnt desc) as tbl;"
 
 	rows, err := db.Query(query, symbol, instance)
 	if err!= nil {
+		fmt.Println(query)
+		fmt.Println(symbol, instance)
 		panic(err)
 		}
 	defer rows.Close()
 
 	for rows.Next() {
-		if err := rows.Scan(&res); err != nil {
-			fmt.Println("this error hit1 ")
+		if err := rows.Scan(&ty,&sub); err != nil {
+			fmt.Println("get_subsys_from_symbol_name: this error hit1 ")
 			return "", err
 			}
 		}
-	subsytems_cache[symbol]=res
-	return res, nil
+
+	if ty== "indirect" {
+		sub=ty
+		}
+	subsytems_cache[symbol]=sub
+	return sub, nil
 }
 
 // Returns the id of a given function name
@@ -248,62 +280,88 @@ func not_exluded(symbol string, excluded []string)bool{
 }
 
 // Computes the call tree of a given function name
-func Navigate(db *sql.DB, symbol_id int, parent_dispaly string, visited *[]int, prod map[string]int, instance int, cache Cache, mode int, excluded []string, depth uint, maxdepth uint, dot_fmt string, output *string) {
-	var tmp,s,l,ll,r	string
-	var depthInc		uint	= 0
+// TODO: refactory needed:
+// What is the problem: too many args.
+// suggestion: New version with input and output structs.
+func Navigate(db *sql.DB, symbol_id int, parent_dispaly Node, targets []string, visited *[]int, AdjMap *[]AdjM, prod map[string]int, instance int, cache Cache, mode OutMode, excluded_after []string, excluded_before []string, depth int, maxdepth int, dot_fmt string, output *string) {
+	var tmp, s		string
+	var l, r, ll		Node
+	var depthInc		int	= 0
 
 	*visited=append(*visited, symbol_id)
 	l=parent_dispaly
 	successors, err:=get_successors_by_id(db, symbol_id, instance, cache);
-	successors=removeDuplicate(successors)
+	if mode == PRINT_ALL {
+		successors=removeDuplicate(successors)
+		}
 	if err==nil {
 		for _, curr := range successors{
-			entry, err := get_entry_by_id(db, curr.Sym_id, instance, cache.Entries)
-			if err!=nil {
-				r="Unknown";
-				} else {
-					r=entry.Symbol
+			if not_exluded(curr.Symbol, excluded_before) {
+				r.Symbol=curr.Symbol
+				r.Source_ref = curr.Source_ref
+				r.Address_ref = curr.Address_ref
+				tmp, _ =get_subsys_from_symbol_name(db,r.Symbol, instance, cache.SubSys)
+				if tmp=="" {
+					r.Subsys=SUBSYS_UNDEF
 					}
-			switch mode {
-				case PRINT_ALL:
-					s=fmt.Sprintf(dot_fmt, l, r)
-					ll=r
-					depthInc = 1
-					break
-				case PRINT_SUBSYS:
-					if tmp, err=get_subsys_from_symbol_name(db,r, instance, cache.SubSys); r!=tmp {
-						if tmp != "" {
-							r=tmp
-							} else {
-								r="UNDEFINED SUBSYSTEM"
-								}
-						}
-					if l!=r {
-						s=fmt.Sprintf(dot_fmt, l, r)
+
+				switch mode {
+					case PRINT_ALL:
+						s=fmt.Sprintf(dot_fmt, l.Symbol, r.Symbol)
+						ll=r
 						depthInc = 1
-						} else {
-							s="";
+						break
+					case PRINT_SUBSYS, PRINT_SUBSYS_WS, PRINT_TARGETED:
+						if tmp, err=get_subsys_from_symbol_name(db,r.Symbol, instance, cache.SubSys); r.Subsys!=tmp {
+							if tmp != "" {
+								r.Subsys=tmp
+								} else {
+									r.Subsys=SUBSYS_UNDEF
+									}
 							}
-					ll=r
-					break
 
-				}
-			if _, ok := prod[s]; ok {
-				prod[s]++
-				} else {
-					prod[s]=1
-					if s!="" {
-						(*output)=(*output)+s
-						}
+						if l.Subsys!=r.Subsys {
+							s=fmt.Sprintf(dot_fmt, l.Subsys, r.Subsys)
+							*AdjMap=append(*AdjMap, AdjM{l,r})
+							depthInc = 1
+							} else {
+								s="";
+								}
+						ll=r
+						break
+					default:
+						panic(mode)
 					}
+				if _, ok := prod[s]; ok {
+					prod[s]++
+					} else {
+						prod[s]=1
+						if s!="" {
+							if (mode != PRINT_TARGETED) || (intargets(targets, l.Subsys,r.Subsys)) {
+								(*output)=(*output)+s
+								}
+							}
+						}
 
-			if Not_in(*visited, curr.Sym_id){
-				if not_exluded(entry.Symbol, excluded) && (maxdepth == 0 || (maxdepth > 0 && depth < maxdepth)){
-					Navigate(db, curr.Sym_id, ll, visited, prod, instance, cache, mode, excluded, depth+depthInc, maxdepth, dot_fmt, output)
+				if Not_in(*visited, curr.Sym_id){
+					if (not_exluded(curr.Symbol, excluded_after) || not_exluded(curr.Symbol, excluded_before)) && (  maxdepth == 0  ||  (  (maxdepth > 0)   &&   (depth < maxdepth) ) ){
+						Navigate(db, curr.Sym_id, ll, targets, visited, AdjMap, prod, instance, cache, mode, excluded_before, excluded_before, depth+depthInc, maxdepth, dot_fmt, output)
+						}
 					}
 				}
 			}
 		}
+}
+
+//returns true if one of the nodes n1, n2 is a target node
+func intargets(targets []string, n1 string, n2 string) bool {
+
+	for _, t := range targets {
+		if (t == n1) || (t == n2) {
+			return true
+			}
+		}
+	return false
 }
 
 // Returns the subsystem list associated with a given function name

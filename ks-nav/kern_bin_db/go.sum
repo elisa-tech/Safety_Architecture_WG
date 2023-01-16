@@ -2,8 +2,8 @@ github.com/VividCortex/ewma v1.1.1 h1:MnEK4VOv6n0RSY4vtRe3h11qjxL3+t0B8yOL8iMXdc
 github.com/VividCortex/ewma v1.1.1/go.mod h1:2Tkkvm3sRDVXaiyucHiACn4cqf7DpdyLvmxzcbUokwA=
 github.com/cheggaaa/pb/v3 v3.1.0 h1:3uouEsl32RL7gTiQsuaXD4Bzbfl5tGztXGUvXbs4O04=
 github.com/cheggaaa/pb/v3 v3.1.0/go.mod h1:YjrevcBqadFDaGQKRdmZxTY42pXEqda48Ea3lt0K/BE=
-github.com/elazarl/addr2line v0.0.0-20160815095215-325e5a3858c1 h1:vSoSl4HVaMwez9nmfrRTUHaIwYsdnnjAyMQHKp0AfTg=
-github.com/elazarl/addr2line v0.0.0-20160815095215-325e5a3858c1/go.mod h1:TVEOTfyQKjQmlz68GJsAtNERsdCqJxSOjNWIzU8ZKpA=
+github.com/elazarl/addr2line v0.0.0-20221220140718-9f1e6a7882b4 h1:y3JXhVdMvND14f/r+EdgKwCbT76qQVw5X+qQY252jd8=
+github.com/elazarl/addr2line v0.0.0-20221220140718-9f1e6a7882b4/go.mod h1:TVEOTfyQKjQmlz68GJsAtNERsdCqJxSOjNWIzU8ZKpA=
 github.com/fatih/color v1.10.0 h1:s36xzo75JdqLaaWoiEHk767eHiwo0598uUxyfiPkDsg=
 github.com/fatih/color v1.10.0/go.mod h1:ELkj/draVOlAH/xkhN6mQ50Qd0MPOk5AAr3maGEBuJM=
 github.com/lib/pq v1.10.6 h1:jbk+ZieJ0D7EVGJYpL9QTz7/YW6UHbmdnZWYyK5cdBs=

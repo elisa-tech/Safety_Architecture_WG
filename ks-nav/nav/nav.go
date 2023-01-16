@@ -33,6 +33,7 @@ package main
 import (
 	"bytes"
 	"compress/gzip"
+	"strings"
 	"errors"
 	"fmt"
 	"os"
@@ -65,6 +66,12 @@ var fmt_dot_header = []string {
 		"digraph G {\n",
 		}
 
+var fmt_dot_node_highlight_w_symb = "\"%[1]s\" [shape=record style=\"rounded,filled,bold\" fillcolor=yellow label=\"%[1]s|%[2]s\"]\n"
+var fmt_dot_node_highlight_wo_symb = "\"%[1]s\" [shape=record style=\"rounded,filled,bold\" fillcolor=yellow label=\"%[1]s\"]\n"
+
+var fmt_node_default = "node [shape=\"box\"];"
+
+
 func opt2num(s string) int{
         var opt = map[string]int{
                 "GraphOnly":1,
@@ -79,6 +86,34 @@ func opt2num(s string) int{
         return val
 }
 
+func decorate_line(l string, r string, adjm []AdjM) string {
+	var res string =" [label=\""
+
+	for _, item := range adjm {
+		if (item.l.Subsys==l) && (item.r.Subsys==r) {
+			tmp:=fmt.Sprintf("%s([%s]%s),\\n",item.r.Symbol, item.r.Address_ref, item.r.Source_ref)
+			if ! strings.Contains(res, tmp) {
+				 res=res+fmt.Sprintf("%s([%s]%s),\\n",item.r.Symbol, item.r.Address_ref, item.r.Source_ref)
+				}
+			}
+		}
+	res=res+"\"]"
+	return res
+}
+
+func decorate(dot_str string, adjm []AdjM) string{
+	var res string
+
+	dot_body:= strings.Split(dot_str, "\n")
+	for i, line := range dot_body{
+		split := strings.Split(line, "->")
+		if len(split)==2 {
+			res=res+dot_body[i] + decorate_line(strings.TrimSpace( strings.Replace(split[0], "\"", "", -1) ), strings.TrimSpace( strings.Replace(split[1], "\"", "", -1) ), adjm)+"\n"
+			}
+		}
+	return res
+}
+
 func generate_output(db *sql.DB, conf *configuration) (string, error){
 	var	GraphOutput	string
 	var 	JsonOutput	string
@@ -86,6 +121,7 @@ func generate_output(db *sql.DB, conf *configuration) (string, error){
 	var	visited		[]int
 	var	entry_name	string
 	var	output		string
+	var	adjm		[]AdjM
 
 	cache := make(map[int][]Entry)
 	cache2 := make(map[int]Entry)
@@ -105,9 +141,36 @@ func generate_output(db *sql.DB, conf *configuration) (string, error){
 			} else {
 				entry_name=entry.Symbol
 				}
+	start_subsys, _  := get_subsys_from_symbol_name(db, entry_name, (*conf).Instance, cache3)
+	if start_subsys=="" {
+		start_subsys=SUBSYS_UNDEF
+		}
 
-	Navigate(db, start, entry_name, &visited, prod, (*conf).Instance, Cache{cache, cache2, cache3}, (*conf).Mode, (*conf).Excluded, 0, (*conf).MaxDepth, fmt_dot[opt2num((*conf).Jout)], &output)
+	 if ((*conf).Mode==PRINT_TARGETED) && len( (*conf).Target_sybsys)==0 {
+		targ_subsys_tmp, err := get_subsys_from_symbol_name(db, (*conf).Symbol, (*conf).Instance, cache3)
+		if err!= nil {
+			panic(err)
+			}
+		(*conf).Target_sybsys =append((*conf).Target_sybsys, targ_subsys_tmp)
+		}
+
+
+	Navigate(db, start, Node{start_subsys, entry_name, "enty point", "0x0"}, (*conf).Target_sybsys, &visited, &adjm, prod, (*conf).Instance, Cache{cache, cache2, cache3}, (*conf).Mode, (*conf).Excluded_after, (*conf).Excluded_before, 0, (*conf).MaxDepth, fmt_dot[opt2num((*conf).Jout)], &output)
+
+	if ((*conf).Mode==PRINT_SUBSYS_WS) || ((*conf).Mode==PRINT_TARGETED) {
+		output=decorate(output, adjm)
+		}
+
 	GraphOutput=GraphOutput+output
+	if ((*conf).Mode==PRINT_TARGETED) {
+		for _, i := range (*conf).Target_sybsys {
+			if cache3[(*conf).Symbol] == i {
+				GraphOutput = GraphOutput + fmt.Sprintf(fmt_dot_node_highlight_w_symb, i, (*conf).Symbol)
+				} else {
+					GraphOutput = GraphOutput + fmt.Sprintf(fmt_dot_node_highlight_wo_symb, i)
+					}
+			}
+		}
 	GraphOutput=GraphOutput+"}"
 
 	symbdata, err := symbSubsys(db, visited, (*conf).Instance, Cache{cache, cache2, cache3})

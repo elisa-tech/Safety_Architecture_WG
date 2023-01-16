@@ -8,6 +8,17 @@ Such database can help manual source code analysis, easing the source code,
 and allowing automated checks such as the scan for recursive function and 
 similar queries.
 
+## Prerequisites
+In order to develop this project you need to install the radare2 dev package:
+
+#### Fedora
+```azure
+$ sudo dnf install radare2-devel
+```
+#### Arch Linux 
+```azure
+$ sudo pacman -S radare2
+```
 ## Build
 
 kern_bin_db is implemented in Golang. Golang application are usually easy 
@@ -98,3 +109,12 @@ Configuration is a file containing a JSON serialized conf object
 
 **NOTE:** Defaults  are designed to make the tool work out of the box, if 
 the executable is placed in the Linux kernel source code root directory.
+
+# TODO
+* currently, kern_bin_db scans only the kernel binary image. Loadable 
+modules are not considered, which means that symbols defined in modules 
+are not considered. A useful extension would be to scan modules in a 
+given kernel tree and add symbols to the database.
+* in relation to the previous, it would be useful to track the symbol
+source (kernel image/module). The database does not currently support 
+this feature, which means that the database schema needs to be adapted.

@@ -1,31 +1,6 @@
 /*
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *   Name: kern_bin_db - Kernel source code analysis tool database creator
- *   Description: Parses kernel source tree and binary images and builds the DB
- *
- *   Author: Alessandro Carminati <acarmina@redhat.com>
- *   Author: Maurizio Papini <mpapini@redhat.com>
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *   Copyright (c) 2022 Red Hat, Inc. All rights reserved.
- *
- *   This copyrighted material is made available to anyone wishing
- *   to use, modify, copy, or redistribute it subject to the terms
- *   and conditions of the GNU General Public License version 2.
- *
- *   This program is distributed in the hope that it will be
- *   useful, but WITHOUT ANY WARRANTY; without even the implied
- *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- *   PURPOSE. See the GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public
- *   License along with this program; if not, write to the Free
- *   Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- *   Boston, MA 02110-1301, USA.
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Copyright (c) 2022 Red Hat, Inc.
+ * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
 package main
@@ -73,13 +48,13 @@ type func_data struct {
 	Noreturn   bool         `json: "noreturn"`
 	Stackframe uint16       `json: "stackframe"`
 	Calltype   string       `json: "calltype"`
-	Cost       uint16       `json: "cost"`
+	Cost       uint32       `json: "cost"`
 	Cc         uint16       `json: "cc"`
 	Bits       uint16       `json: "bits"`
 	Type       string       `json: "type"`
 	Nbbs       uint16       `json: "nbbs"`
 	Is_lineal  bool         `json: "is-lineal"`
-	Ninstrs    uint16       `json: "ninstrs"`
+	Ninstrs    uint32       `json: "ninstrs"`
 	Edges      uint16       `json: "edges"`
 	Ebbs       uint16       `json: "ebbs"`
 	Signature  string       `json: "signature"`
@@ -89,7 +64,7 @@ type func_data struct {
 	Datarefs   []uint64     `json: "datarefs"`
 	Codexrefs  []ref_       `json: "codexrefs"`
 	Dataxrefs  []uint64     `json: "dataxrefs"`
-	Indegree   uint16       `json: "indegree"`
+	Indegree   uint32       `json: "indegree"`
 	Outdegree  uint16       `json: "outdegree"`
 	Nlocals    uint16       `json: "nlocals"`
 	Nargs      uint16       `json: "nargs"`
@@ -404,9 +379,19 @@ func get_all_funcdata(r2p *r2.Pipe) []func_data {
 		if error != nil {
 			fmt.Printf("Error while parsing data: %s", error)
 		}
-		for _, s := range symbols {
-			if strings.Contains(s.Name, "loc.__x86_indirect_thunk_") {
-				functions = append(functions, func_data{Offset: s.Offset, Name: s.Name, Indirect: true})
+		//check if __x86_indirect_thunk_ x86_64 indirect retpoline are already there
+		addIndirect := true
+		for i, f := range functions {
+			if strings.Contains(f.Name, "__x86_indirect_thunk_") {
+				functions[i].Indirect = true
+				addIndirect = false
+			}
+		}
+		if addIndirect {
+			for _, s := range symbols {
+				if strings.Contains(s.Name, "loc.__x86_indirect_thunk_") {
+					functions = append(functions, func_data{Offset: s.Offset, Name: s.Name, Indirect: true})
+				}
 			}
 		}
 	}

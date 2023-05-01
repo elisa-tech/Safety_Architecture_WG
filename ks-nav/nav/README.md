@@ -49,10 +49,8 @@ Descr: kernel symbol navigator
 	-s	<v>	Specifies symbol
 	-i	<v>	Specifies instance
 	-f	<v>	Specifies config file
-	-u	<v>	Forces use specified database userid
-	-p	<v>	Forecs use specified password
-	-d	<v>	Forecs use specified DBhost
-	-p	<v>	Forecs use specified DBPort
+	-e	<v>	Forces to use a specified DB Driver (i.e. postgres, mysql or sqlite3)
+	-d	<v>	Forces to use a specified DB DSN
 	-m	<v>	Sets display mode 2=subsystems,1=all
 	-h		This Help
 ```
@@ -60,28 +58,22 @@ Descr: kernel symbol navigator
 ## Sample configuration:
 ```
 {
-"DBURL":"dbs.hqhome163.com",
-"DBPort":5432,
-"DBUser":"alessandro",
-"DBPassword":"<password>",
-"DBTargetDB":"kernel_bin",
-"Symbol":"__arm64_sys_getppid",
-"Instance":1,
-"Mode":1,
-"Excluded": ["rcu_.*", "kmalloc", "kfree"],
-"MaxDepth":0,
-"Jout": "JsonOutputPlain"
+"DBDriver":	"postgres",
+"DBDSN":	"host=dbs.hqhome163.com port=5432 user=alessandro password=<password> dbname=kernel_bin sslmode=disable",
+"Symbol":	"__arm64_sys_getppid",
+"Instance":	1,
+"Mode":		1,
+"Excluded":	["rcu_.*", "kmalloc", "kfree"],
+"MaxDepth":	0,
+"Jout":		"JsonOutputPlain"
 }
 ```
 Configuration is a file containing a JSON serialized conf object
 
 |Field        |description                                                                                                |type    |Default value      |
 |-------------|-----------------------------------------------------------------------------------------------------------|--------|-------------------|
-|DBURL        |Host name ot ip address of the psql instance                                                               |string  |dbs.hqhome163.com  |
-|DBPort       |tcp port where psql instance is listening                                                                  |integer |5432               |
-|DBUser       |Valid username on the psql instance                                                                        |string  |alessandro         |
-|DBPassword   |Valid password on the psql instance                                                                        |string  |<password>         |
-|DBTargetDB   |The identifier for the DB containing symbols                                                               |string  |kernel_bin         |
+|DBDriver     |Name of DB engine driver, i.e. postgres, mysql or sqlite3                                                  |string  |postgres           |
+|DBDSN        |DSN in the engine specific format                                                                          |string  |See Note           |
 |Symbol       |The symbol where start the navigation                                                                      |string  |NULL               |
 |Instance     |The interesting symbols instance identifier                                                                |integer |1                  |
 |Mode         |Mode of plotting: 1 symbols, 2 subsystems, 3 subsystems with labels,4 target subsystem isolation           |integer |2                  |
@@ -89,3 +81,7 @@ Configuration is a file containing a JSON serialized conf object
 |MaxDepth     |Max number of levels to explore 0 no limit                                                                 |integer |0                  |
 |Jout         |Type of output: GraphOnly, JsonOutputPlain, JsonOutputB64, JsonOutputGZB64                                 |enum    |GraphOnly          |
 |Target_sybsys|List of subsys that need to be highlighted. if empty, only the subs that contain the start is highlighted  |string  |[]                 | 
+
+**NOTE:** Currently the default DBDSN value is set to:
+host=dbs.hqhome163.com port=5432 user=alessandro password=<password> dbname=kernel_bin sslmode=disable
+to be consistent with the previous default configuration.

@@ -1,32 +1,8 @@
 /*
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *   Name: kern_bin_db - Kernel source code analysis tool database creator
- *   Description: Parses kernel source tree and binary images and builds the DB
- *
- *   Author: Alessandro Carminati <acarmina@redhat.com>
- *   Author: Maurizio Papini <mpapini@redhat.com>
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *   Copyright (c) 2022 Red Hat, Inc. All rights reserved.
- *
- *   This copyrighted material is made available to anyone wishing
- *   to use, modify, copy, or redistribute it subject to the terms
- *   and conditions of the GNU General Public License version 2.
- *
- *   This program is distributed in the hope that it will be
- *   useful, but WITHOUT ANY WARRANTY; without even the implied
- *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- *   PURPOSE. See the GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public
- *   License along with this program; if not, write to the Free
- *   Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- *   Boston, MA 02110-1301, USA.
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Copyright (c) 2022 Red Hat, Inc.
+ * SPDX-License-Identifier: GPL-2.0-or-later
  */
+
 package main
 
 import (
@@ -65,18 +41,20 @@ func main() {
 	}
 	fmt.Println("create stripped version")
 	strip(conf.StripBin, conf.LinuxWDebug, conf.LinuxWODebug)
-	t := Connect_token{conf.DBURL, conf.DBPort, conf.DBUser, conf.DBPassword, conf.DBTargetDB}
-	context := A2L_resolver__init(conf.LinuxWDebug, Connect_db(&t), false)
+	t := Connect_token{conf.DBDriver, conf.DBDSN,}
+	context := A2L_resolver__init(conf.LinuxWDebug, Connect_db(&t), conf.DBDriver, false)
+
+	config, _ := get_FromFile(conf.KConfig_fn)
+	makefile, _ := get_FromFile(conf.KMakefile)
+	v, err := get_version(makefile)
+	if err != nil {
+		panic(err)
+	}
+	wl = &Workload{Workload_type: GENERATE_QUERY, Query_args: Insert_Instance_Args{v.Version, v.Patchlevel, v.Sublevel, v.Extraversion, conf.Note}}
+	query_mgmt(context, wl)
+	id = Insert_datawID(context, (*wl).Query_str)
+
 	if conf.Mode&(ENABLE_VERSION_CONFIG) != 0 {
-		config, _ := get_FromFile(conf.KConfig_fn)
-		makefile, _ := get_FromFile(conf.KMakefile)
-		v, err := get_version(makefile)
-		if err != nil {
-			panic(err)
-		}
-		wl=&Workload{Workload_type: GENERATE_QUERY, Query_args: Insert_Instance_Args{v.Version, v.Patchlevel, v.Sublevel, v.Extraversion, conf.Note}}
-		query_mgmt(context, wl)
-		id = Insert_datawID(context, (*wl).Query_str)
 		kconfig := parse_config(config)
 
 		fmt.Println("store config")
@@ -119,17 +97,17 @@ func main() {
 				symbtype = "indirect"
 			}
 			if strings.Contains(a.Name, "sym.") || a.Indirect {
-				wl=&Workload{
-					Workload_type:	GENERATE_QUERY_AND_EXECUTE_W_A2L,
-					Addr2ln_offset:	a.Offset,
-					Addr2ln_name:	strings.ReplaceAll(a.Name, "sym.", ""),
-					Query_args:	Insert_Symbols_Files_Args{
-						Id:		id,
-						Symbol_Name:	strings.ReplaceAll(a.Name, "sym.", ""),
-						Symbol_Offset:	fmt.Sprintf("0x%08x", a.Offset),
-						Symbol_Type:	symbtype,
-						},
-					}
+				wl = &Workload{
+					Workload_type:  GENERATE_QUERY_AND_EXECUTE_W_A2L,
+					Addr2ln_offset: a.Offset,
+					Addr2ln_name:   strings.ReplaceAll(a.Name, "sym.", ""),
+					Query_args: Insert_Symbols_Files_Args{
+						Id:            id,
+						Symbol_Name:   strings.ReplaceAll(a.Name, "sym.", ""),
+						Symbol_Offset: fmt.Sprintf("0x%08x", a.Offset),
+						Symbol_Type:   symbtype,
+					},
+				}
 				query_mgmt(context, wl)
 			}
 

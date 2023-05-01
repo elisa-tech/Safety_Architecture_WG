@@ -1,31 +1,6 @@
 /*
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *   Name: kern_bin_db - Kernel source code analysis tool database creator
- *   Description: Parses kernel source tree and binary images and builds the DB
- *
- *   Author: Alessandro Carminati <acarmina@redhat.com>
- *   Author: Maurizio Papini <mpapini@redhat.com>
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *
- *   Copyright (c) 2022 Red Hat, Inc. All rights reserved.
- *
- *   This copyrighted material is made available to anyone wishing
- *   to use, modify, copy, or redistribute it subject to the terms
- *   and conditions of the GNU General Public License version 2.
- *
- *   This program is distributed in the hope that it will be
- *   useful, but WITHOUT ANY WARRANTY; without even the implied
- *   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
- *   PURPOSE. See the GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public
- *   License along with this program; if not, write to the Free
- *   Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- *   Boston, MA 02110-1301, USA.
- *
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Copyright (c) 2022 Red Hat, Inc.
+ * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
 package main
@@ -36,7 +11,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"strconv"
 )
 
 // Default config file
@@ -65,11 +39,8 @@ type configuration struct {
 	LinuxWDebug    string
 	LinuxWODebug   string
 	StripBin       string
-	DBURL          string
-	DBPort         int
-	DBUser         string
-	DBPassword     string
-	DBTargetDB     string
+	DBDriver       string
+	DBDSN          string
 	Maintainers_fn string
 	KConfig_fn     string
 	KMakefile      string
@@ -82,11 +53,8 @@ var Default_config configuration = configuration{
 	LinuxWDebug:    "vmlinux",
 	LinuxWODebug:   "vmlinux.work",
 	StripBin:       "/usr/bin/strip",
-	DBURL:          "dbs.hqhome163.com",
-	DBPort:         5432,
-	DBUser:         "alessandro",
-	DBPassword:     "<password>",
-	DBTargetDB:     "kernel_bin",
+	DBDriver:       "postgres",
+	DBDSN:          "host=dbs.hqhome163.com port=5432 user=alessandro password=<password> dbname=kernel_bin sslmode=disable",
 	Maintainers_fn: "MAINTAINERS",
 	KConfig_fn:     "include/generated/autoconf.h",
 	KMakefile:      "Makefile",
@@ -111,10 +79,8 @@ func cmd_line_item_init() []cmd_line_items {
 
 	push_cmd_line_item("-f", "specifies json configuration file", true, func_jconf, &res)
 	push_cmd_line_item("-s", "Forces use specified strip binary", true, func_forceStrip, &res)
-	push_cmd_line_item("-u", "Forces use specified database userid", true, func_DBUser, &res)
-	push_cmd_line_item("-p", "Forecs use specified password", true, func_DBPass, &res)
-	push_cmd_line_item("-d", "Forecs use specified DBhost", true, func_DBHost, &res)
-	push_cmd_line_item("-o", "Forecs use specified DBPort", true, func_DBPort, &res)
+	push_cmd_line_item("-e", "Forces to use a specified DB Driver (i.e. postgres, mysql or sqlite3)", true, func_DBDriver, &res)
+	push_cmd_line_item("-d", "Forces to use a specified DB DSN", true, func_DBDSN, &res)
 	push_cmd_line_item("-n", "Forecs use specified note (default 'upstream')", true, func_Note, &res)
 	push_cmd_line_item("-c", "Checks dependencies", false, func_check, &res)
 	push_cmd_line_item("-h", "This Help", false, func_help, &res)
@@ -145,27 +111,13 @@ func func_forceStrip(conf *configuration, fn []string) error {
 	return nil
 }
 
-func func_DBUser(conf *configuration, user []string) error {
-	(*conf).DBUser = user[0]
+func func_DBDriver(conf *configuration, db_driver []string) error {
+	(*conf).DBDriver = db_driver[0]
 	return nil
 }
 
-func func_DBPass(conf *configuration, pass []string) error {
-	(*conf).DBPassword = pass[0]
-	return nil
-}
-
-func func_DBHost(conf *configuration, host []string) error {
-	(*conf).DBURL = host[0]
-	return nil
-}
-
-func func_DBPort(conf *configuration, port []string) error {
-	s, err := strconv.Atoi(port[0])
-	if err != nil {
-		return err
-	}
-	(*conf).DBPort = s
+func func_DBDSN(conf *configuration, db_dsn []string) error {
+	(*conf).DBDSN = db_dsn[0]
 	return nil
 }
 

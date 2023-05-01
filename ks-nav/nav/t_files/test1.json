@@ -1,13 +1,11 @@
 {
-"DBURL":"dummy",
-"DBPort":1234,
-"DBUser":"dummy",
-"DBPassword":"dummy",
-"DBTargetDB":"dummy",
+"DBDriver":"dummy",
+"DBDSN":"dummy",
 "Symbol":"dummy",
 "Instance":1234,
 "Mode":1234,
-"Excluded": ["dummy1", "dummy2", "dummy3"],
+"ExcludedBefore": ["dummy1", "dummy2", "dummy3"],
+"ExcludedAfter": ["dummyA", "dummyB", "dummyC"],
 "MaxDepth":1234,
-"Jout": "JsonOutputPlain"
+"Jout": "jsonOutputPlain"
 }

@@ -1,0 +1,11 @@
+{
+"DBDriver":"dummy",
+"DBDSN":"dummy",
+"Symbol":"dummy",
+"Instance":1234,
+"Mode":1234,
+"ExcludedBefore": ["dummy1", "dummy2", "dummy3"],
+"ExcludedAfter": ["dummyA", "dummyB", "dummyC"],
+"MaxDepth":1234,
+"Jout": "jsonOutputPlain"
+}

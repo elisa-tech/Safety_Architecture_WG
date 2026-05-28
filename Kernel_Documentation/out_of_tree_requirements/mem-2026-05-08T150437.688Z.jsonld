@@ -1,0 +1,3208 @@
+{
+  "@context": "https://spdx.org/rdf/3.0.1/spdx-context.jsonld",
+  "@graph": [
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:library:char",
+      "subject": "spdx:file:basil:library:char",
+      "statement": "{\"name\": \"char\"}",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:api:352",
+      "subject": "spdx:file:basil:api:352",
+      "statement": "{\"id\": 352, \"api\": \"mem\", \"library\": \"char\", \"library_version\": \"b4e07588e743c989499ca24d49e752c074924a9a\", \"raw_specification_url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c\", \"category\": \"driver\", \"checksum\": \"\", \"default_view\": \"dynamic-view\", \"implementation_file\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c\", \"implementation_file_from_row\": null, \"implementation_file_to_row\": null, \"created_by\": \"lpellecc\", \"edited_by\": \"lpellecc\", \"last_coverage\": \"31\", \"tags\": \"mem, char, char/mem\", \"version\": \"5\", \"srs_coverage\": 600.0, \"tss_coverage\": 0, \"tcs_coverage\": 0, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-05-08 07:51\", \"__tablename__\": \"apis\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:api:352"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:api:reference-document:352",
+      "subject": "spdx:file:basil:api:reference-document:352",
+      "statement": "{\"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c\", \"content\": \"\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:api:352"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:352:software-requirement:3:relation-id:3",
+      "subject": "spdx:snippet:api:352:1",
+      "statement": "{\"relation_id\": 3, \"section\": \"static loff_t memory_lseek(struct file *file, loff_t offset, int orig)\\n{\\n\\tloff_t ret;\\n\\n\\tinode_lock(file_inode(file));\\n\\tswitch (orig) {\\n\\tcase SEEK_CUR:\\n\\t\\toffset += file->f_pos;\\n\\t\\tfallthrough;\\n\\tcase SEEK_SET:\\n\\t\\t/* to avoid userland mistaking f_pos=-9 as -EBADF=-9 */\\n\\t\\tif ((unsigned long long)offset >= -MAX_ERRNO) {\\n\\t\\t\\tret = -EOVERFLOW;\\n\\t\\t\\tbreak;\\n\\t\\t}\\n\\t\\tfile->f_pos = offset;\\n\\t\\tret = file->f_pos;\\n\\t\\tforce_successful_syscall_return();\\n\\t\\tbreak;\\n\\tdefault:\\n\\t\\tret = -EINVAL;\\n\\t}\\n\\tinode_unlock(file_inode(file));\\n\\treturn ret;\\n}\", \"offset\": 12846, \"direct\": true, \"coverage\": 20, \"created_by\": \"lpellecc\", \"covered\": 20.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:3",
+      "subject": "spdx:file:basil:software-requirement:3",
+      "statement": "{\"id\": 3, \"title\": \"MEMORY-LSEEK-001\", \"description\": \"The memory_lseek() function shall:\\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\\n\\n+ check the input orig value; if it is the SEEK_CUR() macro, increment the input offset by the current file position stored in the f_pos member of the input file and fall through to the SEEK_SET() case.\\n+ in the SEEK_SET() case, check if the resulting offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\\n+ if the condition is met, set the return value to the -EOVERFLOW() macro, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return -EOVERFLOW().\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:4",
+      "subject": "spdx:file:basil:software-requirement:4",
+      "statement": "{\"id\": 4, \"title\": \"MEMORY-LSEEK-002\", \"description\": \"The memory_lseek() function shall:\\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\\n\\n+ check the input orig value; if it is the SEEK_CUR() macro, increment the input offset by the current file position stored in the f_pos member of the input file and fall through to the SEEK_SET() case.\\n+ in the SEEK_SET() case, check if the resulting offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\\n+ if the condition is not met, update the f_pos member of the input file with the calculated offset, set the return value to the new file position, call the force_successful_syscall_return() macro to ensure the return value is not treated as an error by the system's syscall handling mechanism, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return the new file position.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:5",
+      "subject": "spdx:file:basil:software-requirement:5",
+      "statement": "{\"id\": 5, \"title\": \"MEMORY-LSEEK-003\", \"description\": \"The memory_lseek() function shall:\\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\\n\\n+ check the input orig value; if it is the SEEK_SET() macro, check if the input offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\\n+ if the condition is met, set the return value to the -EOVERFLOW() macro, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return -EOVERFLOW().\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:5"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:6",
+      "subject": "spdx:file:basil:software-requirement:6",
+      "statement": "{\"id\": 6, \"title\": \"MEMORY-LSEEK-004\", \"description\": \"The memory_lseek() function shall:\\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\\n\\n+ check the input orig value; if it is the SEEK_SET() macro, check if the input offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\\n+ if the condition is not met, update the f_pos member of the input file with the input offset, set the return value to the new file position, call the force_successful_syscall_return() macro to ensure the return value is not treated as an error by the system's syscall handling mechanism, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return the new file position.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:6"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:7",
+      "subject": "spdx:file:basil:software-requirement:7",
+      "statement": "{\"id\": 7, \"title\": \"MEMORY-LSEEK-005\", \"description\": \"The memory_lseek() function shall:\\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\\n\\n+ check the input orig value; if it is neither the SEEK_CUR() macro nor the SEEK_SET() macro, set the return value to the -EINVAL() macro, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return -EINVAL().\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:7"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:352:software-requirement:8:relation-id:8",
+      "subject": "spdx:snippet:api:352:2",
+      "statement": "{\"relation_id\": 8, \"section\": \"static int memory_open(struct inode *inode, struct file *filp)\\n{\\n\\tint minor;\\n\\tconst struct memdev *dev;\\n\\n\\tminor = iminor(inode);\\n\\tif (minor >= ARRAY_SIZE(devlist))\\n\\t\\treturn -ENXIO;\\n\\n\\tdev = &devlist[minor];\\n\\tif (!dev->fops)\\n\\t\\treturn -ENXIO;\\n\\n\\tfilp->f_op = dev->fops;\\n\\tfilp->f_mode |= dev->fmode;\\n\\n\\tif (dev->fops->open)\\n\\t\\treturn dev->fops->open(inode, filp);\\n\\n\\treturn 0;\\n}\", \"offset\": 15958, \"direct\": true, \"coverage\": 25, \"created_by\": \"lpellecc\", \"covered\": 25.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:8",
+      "subject": "spdx:file:basil:software-requirement:8",
+      "statement": "{\"id\": 8, \"title\": \"MEMORY-OPEN-001\", \"description\": \"The memory_open() function shall:\\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\\n\\n+ return '-ENXIO' if the obtained minor number is greater than or equal to the size of the 'devlist' array, as determined by the 'ARRAY_SIZE()' macro, indicating that the requested device index is out of bounds.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:8"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:9",
+      "subject": "spdx:file:basil:software-requirement:9",
+      "statement": "{\"id\": 9, \"title\": \"MEMORY-OPEN-002\", \"description\": \"The memory_open() function shall:\\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\\n\\n+ access the 'memdev' structure at the index corresponding to the minor number in the 'devlist' array if the minor number is less than the size of the 'devlist' array as determined by the 'ARRAY_SIZE()' macro.\\n+ return '-ENXIO' if the 'fops' pointer of the accessed 'memdev' structure is NULL, indicating that no file operations are defined for the device.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:9"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:10",
+      "subject": "spdx:file:basil:software-requirement:10",
+      "statement": "{\"id\": 10, \"title\": \"MEMORY-OPEN-003\", \"description\": \"The memory_open() function shall:\\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\\n\\n+ access the 'memdev' structure at the index corresponding to the minor number in the 'devlist' array if the minor number is less than the size of the 'devlist' array as determined by the 'ARRAY_SIZE()' macro.\\n+ perform the following if the 'fops' pointer of the accessed 'memdev' structure is not NULL:\\n    + update the 'f_op' field of the input filp with the 'fops' pointer to associate the file with the device-specific operations.\\n    + update the 'f_mode' field of the input filp by performing a bitwise OR with the 'fmode' value from the 'memdev' structure to set the supported file modes.\\n    + call the 'open' function pointer within the 'fops' structure, passing the input inode and input filp, and return its result if the 'open' pointer is not NULL.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:10"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:11",
+      "subject": "spdx:file:basil:software-requirement:11",
+      "statement": "{\"id\": 11, \"title\": \"MEMORY-OPEN-004\", \"description\": \"The memory_open() function shall:\\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\\n\\n+ access the 'memdev' structure at the index corresponding to the minor number in the 'devlist' array if the minor number is less than the size of the 'devlist' array as determined by the 'ARRAY_SIZE()' macro.\\n+ perform the following if the 'fops' pointer of the accessed 'memdev' structure is not NULL:\\n    + update the 'f_op' field of the input filp with the 'fops' pointer to associate the file with the device-specific operations.\\n    + update the 'f_mode' field of the input filp by performing a bitwise OR with the 'fmode' value from the 'memdev' structure to set the supported file modes.\\n    + return 0 if the 'open' function pointer within the 'fops' structure is NULL, indicating successful opening of the device without a specific initialization callback.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:11"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:352:software-requirement:12:relation-id:12",
+      "subject": "spdx:snippet:api:352:3",
+      "statement": "{\"relation_id\": 12, \"section\": \"static int mmap_mem_prepare(struct vm_area_desc *desc)\\n{\\n\\tstruct file *file = desc->file;\\n\\tconst size_t size = vma_desc_size(desc);\\n\\tconst phys_addr_t offset = (phys_addr_t)desc->pgoff << PAGE_SHIFT;\\n\\n\\t/* Does it even fit in phys_addr_t? */\\n\\tif (offset >> PAGE_SHIFT != desc->pgoff)\\n\\t\\treturn -EINVAL;\\n\\n\\t/* It's illegal to wrap around the end of the physical address space. */\\n\\tif (offset + (phys_addr_t)size - 1 < offset)\\n\\t\\treturn -EINVAL;\\n\\n\\tif (!valid_mmap_phys_addr_range(desc->pgoff, size))\\n\\t\\treturn -EINVAL;\\n\\n\\tif (!private_mapping_ok(desc))\\n\\t\\treturn -ENOSYS;\\n\\n\\tif (!range_is_allowed(desc->pgoff, size))\\n\\t\\treturn -EPERM;\\n\\n\\tif (!phys_mem_access_prot_allowed(file, desc->pgoff, size,\\n\\t\\t\\t\\t\\t  &desc->page_prot))\\n\\t\\treturn -EINVAL;\\n\\n\\tdesc->page_prot = phys_mem_access_prot(file, desc->pgoff,\\n\\t\\t\\t\\t\\t       size,\\n\\t\\t\\t\\t\\t       desc->page_prot);\\n\\n\\tdesc->vm_ops = &mmap_mem_ops;\\n\\n\\t/* Remap-pfn-range will mark the range with the I/O flag. */\\n\\tmmap_action_remap_full(desc, desc->pgoff);\\n\\t/* We filter remap errors to -EAGAIN. */\\n\\tdesc->action.error_hook = mmap_filter_error;\\n\\n\\treturn 0;\\n}\", \"offset\": 6673, \"direct\": true, \"coverage\": 14, \"created_by\": \"lpellecc\", \"covered\": 14.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:12",
+      "subject": "spdx:file:basil:software-requirement:12",
+      "statement": "{\"id\": 12, \"title\": \"MMAP-MEM-PREPARE-001\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ return -EINVAL if the calculated offset cannot be represented within a phys_addr_t type (detected when the offset shifted back by PAGE_SHIFT does not equal the input desc->pgoff).\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 09:15\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:12"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:13",
+      "subject": "spdx:file:basil:software-requirement:13",
+      "statement": "{\"id\": 13, \"title\": \"MMAP-MEM-PREPARE-002\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ calculate the mapping size using vma_desc_size() with the input desc.\\n+ return -EINVAL if the sum of the offset and the size (minus one) wraps around the end of the physical address space.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:13"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:14",
+      "subject": "spdx:file:basil:software-requirement:14",
+      "statement": "{\"id\": 14, \"title\": \"MMAP-MEM-PREPARE-003\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ calculate the mapping size using vma_desc_size() with the input desc.\\n+ return -EINVAL if the physical address range defined by the input desc->pgoff and the calculated size is determined to be invalid by valid_mmap_phys_addr_range().\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:14"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:15",
+      "subject": "spdx:file:basil:software-requirement:15",
+      "statement": "{\"id\": 15, \"title\": \"MMAP-MEM-PREPARE-004\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ calculate the mapping size using vma_desc_size() with the input desc.\\n+ return -ENOSYS if the mapping is private (e.g., MAP_PRIVATE) and this is determined to be unsupported by private_mapping_ok() for the input desc.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:15"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:16",
+      "subject": "spdx:file:basil:software-requirement:16",
+      "statement": "{\"id\": 16, \"title\": \"MMAP-MEM-PREPARE-005\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ calculate the mapping size using vma_desc_size() with the input desc.\\n+ return -EPERM if access to the physical address range defined by the input desc->pgoff and the calculated size is restricted by range_is_allowed().\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:16"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:17",
+      "subject": "spdx:file:basil:software-requirement:17",
+      "statement": "{\"id\": 17, \"title\": \"MMAP-MEM-PREPARE-006\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ calculate the mapping size using vma_desc_size() with the input desc.\\n+ return -EINVAL if the memory access protection for the range is not allowed as determined by phys_mem_access_prot_allowed() using the input desc->file, the input desc->pgoff, the calculated size, and the input desc->page_prot.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:17"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:18",
+      "subject": "spdx:file:basil:software-requirement:18",
+      "statement": "{\"id\": 18, \"title\": \"MMAP-MEM-PREPARE-007\", \"description\": \"The mmap_mem_prepare() shall:\\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\\n+ calculate the mapping size using vma_desc_size() with the input desc.\\n+ update the input desc->page_prot using phys_mem_access_prot() based on the input desc->file, the input desc->pgoff, the calculated size, and the current input desc->page_prot.\\n+ set the input desc->vm_ops to point to the global mmap_mem_ops structure.\\n+ initiate the remapping of the physical range by calling mmap_action_remap_full() with the input desc and the input desc->pgoff.\\n+ assign the mmap_filter_error() function to the input desc->action.error_hook to filter remap errors to -EAGAIN.\\n+ return 0 to indicate successful preparation.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:18"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:352:software-requirement:19:relation-id:19",
+      "subject": "spdx:snippet:api:352:4",
+      "statement": "{\"relation_id\": 19, \"section\": \"static int open_port(struct inode *inode, struct file *filp)\\n{\\n\\tint rc;\\n\\n\\tif (!capable(CAP_SYS_RAWIO))\\n\\t\\treturn -EPERM;\\n\\n\\trc = security_locked_down(LOCKDOWN_DEV_MEM);\\n\\tif (rc)\\n\\t\\treturn rc;\\n\\n\\tif (iminor(inode) != DEVMEM_MINOR)\\n\\t\\treturn 0;\\n\\n\\t/*\\n\\t * Use a unified address space to have a single point to manage\\n\\t * revocations when drivers want to take over a /dev/mem mapped\\n\\t * range.\\n\\t */\\n\\tfilp->f_mapping = iomem_get_mapping();\\n\\n\\treturn 0;\\n}\", \"offset\": 13366, \"direct\": true, \"coverage\": 25, \"created_by\": \"lpellecc\", \"covered\": 25.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:19",
+      "subject": "spdx:file:basil:software-requirement:19",
+      "statement": "{\"id\": 19, \"title\": \"OPEN-PORT-001\", \"description\": \"The open_port() function shall perform the following steps:\\n\\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is not present, it shall return -EPERM.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:19"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:20",
+      "subject": "spdx:file:basil:software-requirement:20",
+      "statement": "{\"id\": 20, \"title\": \"OPEN-PORT-002\", \"description\": \"The open_port() function shall perform the following steps:\\n\\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is present, it shall check if the kernel is locked down for LOCKDOWN_DEV_MEM by calling security_locked_down(). If security_locked_down() returns a non-zero error code, it shall return that error code.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:20"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:21",
+      "subject": "spdx:file:basil:software-requirement:21",
+      "statement": "{\"id\": 21, \"title\": \"OPEN-PORT-003\", \"description\": \"The open_port() function shall perform the following steps:\\n\\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is present, it shall check if the kernel is locked down for LOCKDOWN_DEV_MEM by calling security_locked_down(). If security_locked_down() returns 0, it shall check the minor number of input inode using iminor(). If the minor number is not equal to DEVMEM_MINOR, it shall return 0.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:21"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:22",
+      "subject": "spdx:file:basil:software-requirement:22",
+      "statement": "{\"id\": 22, \"title\": \"OPEN-PORT-004\", \"description\": \"The open_port() function shall perform the following steps:\\n\\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is present, it shall check if the kernel is locked down for LOCKDOWN_DEV_MEM by calling security_locked_down(). If security_locked_down() returns 0, it shall check the minor number of input inode using iminor(). If the minor number is equal to DEVMEM_MINOR, it shall set the f_mapping field of input filp to the mapping returned by iomem_get_mapping() and return 0.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:22"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:352:software-requirement:23:relation-id:23",
+      "subject": "spdx:snippet:api:352:5",
+      "statement": "{\"relation_id\": 23, \"section\": \"static ssize_t read_mem(struct file *file, char __user *buf,\\n\\t\\t\\tsize_t count, loff_t *ppos)\\n{\\n\\tphys_addr_t p = *ppos;\\n\\tssize_t read, sz;\\n\\tvoid *ptr;\\n\\tchar *bounce;\\n\\tint err;\\n\\n\\tif (p != *ppos)\\n\\t\\treturn 0;\\n\\n\\tif (!valid_phys_addr_range(p, count))\\n\\t\\treturn -EFAULT;\\n\\tread = 0;\\n#ifdef __ARCH_HAS_NO_PAGE_ZERO_MAPPED\\n\\t/* we don't have page 0 mapped on sparc and m68k.. */\\n\\tif (p < PAGE_SIZE) {\\n\\t\\tsz = size_inside_page(p, count);\\n\\t\\tif (sz > 0) {\\n\\t\\t\\tif (clear_user(buf, sz))\\n\\t\\t\\t\\treturn -EFAULT;\\n\\t\\t\\tbuf += sz;\\n\\t\\t\\tp += sz;\\n\\t\\t\\tcount -= sz;\\n\\t\\t\\tread += sz;\\n\\t\\t}\\n\\t}\\n#endif\\n\\n\\tbounce = kmalloc(PAGE_SIZE, GFP_KERNEL);\\n\\tif (!bounce)\\n\\t\\treturn -ENOMEM;\\n\\n\\twhile (count > 0) {\\n\\t\\tunsigned long remaining;\\n\\t\\tint allowed, probe;\\n\\n\\t\\tsz = size_inside_page(p, count);\\n\\n\\t\\terr = -EPERM;\\n\\t\\tallowed = page_is_allowed(p >> PAGE_SHIFT);\\n\\t\\tif (!allowed)\\n\\t\\t\\tgoto failed;\\n\\n\\t\\terr = -EFAULT;\\n\\t\\tif (allowed == 2) {\\n\\t\\t\\t/* Show zeros for restricted memory. */\\n\\t\\t\\tremaining = clear_user(buf, sz);\\n\\t\\t} else {\\n\\t\\t\\t/*\\n\\t\\t\\t * On ia64 if a page has been mapped somewhere as\\n\\t\\t\\t * uncached, then it must also be accessed uncached\\n\\t\\t\\t * by the kernel or data corruption may occur.\\n\\t\\t\\t */\\n\\t\\t\\tptr = xlate_dev_mem_ptr(p);\\n\\t\\t\\tif (!ptr)\\n\\t\\t\\t\\tgoto failed;\\n\\n\\t\\t\\tprobe = copy_from_kernel_nofault(bounce, ptr, sz);\\n\\t\\t\\tunxlate_dev_mem_ptr(p, ptr);\\n\\t\\t\\tif (probe)\\n\\t\\t\\t\\tgoto failed;\\n\\n\\t\\t\\tremaining = copy_to_user(buf, bounce, sz);\\n\\t\\t}\\n\\n\\t\\tif (remaining)\\n\\t\\t\\tgoto failed;\\n\\n\\t\\tbuf += sz;\\n\\t\\tp += sz;\\n\\t\\tcount -= sz;\\n\\t\\tread += sz;\\n\\t\\tif (should_stop_iteration())\\n\\t\\t\\tbreak;\\n\\t}\\n\\tkfree(bounce);\\n\\n\\t*ppos += read;\\n\\treturn read;\\n\\nfailed:\\n\\tkfree(bounce);\\n\\treturn err;\\n}\", \"offset\": 1764, \"direct\": true, \"coverage\": 9, \"created_by\": \"lpellecc\", \"covered\": 9.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:5"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:23",
+      "subject": "spdx:file:basil:software-requirement:23",
+      "statement": "{\"id\": 23, \"title\": \"READ-MEM-001\", \"description\": \"The `read_mem()` function shall return `0` if the value of the input parameter `*ppos` changes between its initial read into a local variable `p` and a subsequent comparison, indicating a race condition.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:23"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:24",
+      "subject": "spdx:file:basil:software-requirement:24",
+      "statement": "{\"id\": 24, \"title\": \"READ-MEM-002\", \"description\": \"The `read_mem()` function shall return `-EFAULT` if the `valid_phys_addr_range()` function indicates that the physical address range defined by the current physical address `p` (initialized from the input parameter `*ppos`) and the input parameter `count` is invalid for direct access.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:24"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:25",
+      "subject": "spdx:file:basil:software-requirement:25",
+      "statement": "{\"id\": 25, \"title\": \"READ-MEM-003\", \"description\": \"The `read_mem()` function shall return `-ENOMEM` if the `kmalloc()` function fails to allocate a `PAGE_SIZE` kernel memory buffer using the `GFP_KERNEL` allocation flag, which is used as a bounce buffer for data transfer.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:25"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:26",
+      "subject": "spdx:file:basil:software-requirement:26",
+      "statement": "{\"id\": 26, \"title\": \"READ-MEM-004\", \"description\": \"The `read_mem()` function shall:\\n+ if the `__ARCH_HAS_NO_PAGE_ZERO_MAPPED` macro is defined and the current physical address `p` (initialized from the input parameter `*ppos`) is less than `PAGE_SIZE`, calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n+ return `-EFAULT` if `sz` is greater than `0` and the `clear_user()` function fails to clear `sz` bytes in the input parameter `buf` user memory.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:26"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:352:software-requirement:36:relation-id:36",
+      "subject": "spdx:snippet:api:352:6",
+      "statement": "{\"relation_id\": 36, \"section\": \"static ssize_t write_mem(struct file *file, const char __user *buf,\\n\\t\\t\\t size_t count, loff_t *ppos)\\n{\\n\\tphys_addr_t p = *ppos;\\n\\tssize_t written, sz;\\n\\tunsigned long copied;\\n\\tvoid *ptr;\\n\\n\\tif (p != *ppos)\\n\\t\\treturn -EFBIG;\\n\\n\\tif (!valid_phys_addr_range(p, count))\\n\\t\\treturn -EFAULT;\\n\\n\\twritten = 0;\\n\\n#ifdef __ARCH_HAS_NO_PAGE_ZERO_MAPPED\\n\\t/* we don't have page 0 mapped on sparc and m68k.. */\\n\\tif (p < PAGE_SIZE) {\\n\\t\\tsz = size_inside_page(p, count);\\n\\t\\t/* Hmm. Do something? */\\n\\t\\tbuf += sz;\\n\\t\\tp += sz;\\n\\t\\tcount -= sz;\\n\\t\\twritten += sz;\\n\\t}\\n#endif\\n\\n\\twhile (count > 0) {\\n\\t\\tint allowed;\\n\\n\\t\\tsz = size_inside_page(p, count);\\n\\n\\t\\tallowed = page_is_allowed(p >> PAGE_SHIFT);\\n\\t\\tif (!allowed)\\n\\t\\t\\treturn -EPERM;\\n\\n\\t\\t/* Skip actual writing when a page is marked as restricted. */\\n\\t\\tif (allowed == 1) {\\n\\t\\t\\t/*\\n\\t\\t\\t * On ia64 if a page has been mapped somewhere as\\n\\t\\t\\t * uncached, then it must also be accessed uncached\\n\\t\\t\\t * by the kernel or data corruption may occur.\\n\\t\\t\\t */\\n\\t\\t\\tptr = xlate_dev_mem_ptr(p);\\n\\t\\t\\tif (!ptr) {\\n\\t\\t\\t\\tif (written)\\n\\t\\t\\t\\t\\tbreak;\\n\\t\\t\\t\\treturn -EFAULT;\\n\\t\\t\\t}\\n\\n\\t\\t\\tcopied = copy_from_user(ptr, buf, sz);\\n\\t\\t\\tunxlate_dev_mem_ptr(p, ptr);\\n\\t\\t\\tif (copied) {\\n\\t\\t\\t\\twritten += sz - copied;\\n\\t\\t\\t\\tif (written)\\n\\t\\t\\t\\t\\tbreak;\\n\\t\\t\\t\\treturn -EFAULT;\\n\\t\\t\\t}\\n\\t\\t}\\n\\n\\t\\tbuf += sz;\\n\\t\\tp += sz;\\n\\t\\tcount -= sz;\\n\\t\\twritten += sz;\\n\\t\\tif (should_stop_iteration())\\n\\t\\t\\tbreak;\\n\\t}\\n\\n\\t*ppos += written;\\n\\treturn written;\\n}\", \"offset\": 3350, \"direct\": true, \"coverage\": 9, \"created_by\": \"lpellecc\", \"covered\": 9.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:6"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:36",
+      "subject": "spdx:file:basil:software-requirement:36",
+      "statement": "{\"id\": 36, \"title\": \"WRITE-MEM-003\", \"description\": \"The write_mem() function shall, after successfully validating the physical address range, and if the `__ARCH_HAS_NO_PAGE_ZERO_MAPPED` macro is defined and the physical address 'p' is less than PAGE_SIZE(), calculate the size of the data within the first page using size_inside_page(). It shall then adjust the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by this size, effectively skipping the zero page, and then proceed to write the remaining data.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:36"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:27",
+      "subject": "spdx:file:basil:software-requirement:27",
+      "statement": "{\"id\": 27, \"title\": \"READ-MEM-005\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall return `-EPERM` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is not allowed for access (returns `0`).\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:27"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:28",
+      "subject": "spdx:file:basil:software-requirement:28",
+      "statement": "{\"id\": 28, \"title\": \"READ-MEM-006\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is restricted (returns `2`), and the `clear_user()` function fails to clear `sz` bytes in the input parameter `buf` user memory.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:28"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:29",
+      "subject": "spdx:file:basil:software-requirement:29",
+      "statement": "{\"id\": 29, \"title\": \"READ-MEM-007\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is allowed (returns `1`), and the `xlate_dev_mem_ptr()` function fails to translate the physical address `p` to a kernel virtual address (returns `NULL`).\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:29"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:30",
+      "subject": "spdx:file:basil:software-requirement:30",
+      "statement": "{\"id\": 30, \"title\": \"READ-MEM-008\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is allowed (returns `1`), the `xlate_dev_mem_ptr()` function successfully translates the physical address `p` to a kernel virtual address, and the `copy_from_kernel_nofault()` function fails to copy `sz` bytes from the translated kernel address to the allocated bounce buffer.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:30"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:37",
+      "subject": "spdx:file:basil:software-requirement:37",
+      "statement": "{\"id\": 37, \"title\": \"WRITE-MEM-004\", \"description\": \"The write_mem() function shall, for each page in the requested range, determine if the page is allowed for writing by calling page_is_allowed() with the page frame number derived from the physical address 'p'. If page_is_allowed() returns `0`, indicating the page is not allowed for any access, it shall return -EPERM.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:37"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:31",
+      "subject": "spdx:file:basil:software-requirement:31",
+      "statement": "{\"id\": 31, \"title\": \"READ-MEM-009\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is allowed (returns `1`), the `xlate_dev_mem_ptr()` function successfully translates the physical address `p` to a kernel virtual address, the `copy_from_kernel_nofault()` function successfully copies data to the bounce buffer, and the `copy_to_user()` function fails to copy `sz` bytes from the bounce buffer to the input parameter `buf` user memory.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:31"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:32",
+      "subject": "spdx:file:basil:software-requirement:32",
+      "statement": "{\"id\": 32, \"title\": \"READ-MEM-010\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall return the total number of bytes successfully read so far if the `should_stop_iteration()` function indicates that the read operation should be prematurely stopped.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:32"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:33",
+      "subject": "spdx:file:basil:software-requirement:33",
+      "statement": "{\"id\": 33, \"title\": \"READ-MEM-011\", \"description\": \"The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\\n\\nThe `read_mem()` function shall successfully read `count` bytes from physical memory into the input parameter `buf` user memory by iteratively:\\n+ checking if the physical page frame number derived from the current physical address `p` is allowed using `page_is_allowed()`.\\n+ if `page_is_allowed()` returns `2` (restricted), clearing `sz` bytes in the input parameter `buf` using `clear_user()`.\\n+ if `page_is_allowed()` returns `1` (allowed), translating the physical address `p` to a kernel virtual address using `xlate_dev_mem_ptr()`, copying `sz` bytes from the translated kernel address to an internally allocated bounce buffer using `copy_from_kernel_nofault()`, and then copying `sz` bytes from the bounce buffer to the input parameter `buf` using `copy_to_user()`.\\n+ updating the current physical address `p`, the remaining `count`, and the total `read` bytes.\\n\\nUpon completion of the read operation, the `read_mem()` function shall:\\n+ free the allocated bounce buffer using `kfree()`.\\n+ update the input parameter `*ppos` by adding the total number of bytes read.\\n+ return the total number of bytes successfully read.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:33"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:34",
+      "subject": "spdx:file:basil:software-requirement:34",
+      "statement": "{\"id\": 34, \"title\": \"WRITE-MEM-001\", \"description\": \"The write_mem() function shall, upon invocation, read the physical address from the input 'ppos' pointer. If the physical address read from the input 'ppos' pointer is not equal to the value of the input 'ppos' pointer after the read operation, indicating a concurrent modification or an invalid address, it shall return -EFBIG.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:34"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:35",
+      "subject": "spdx:file:basil:software-requirement:35",
+      "statement": "{\"id\": 35, \"title\": \"WRITE-MEM-002\", \"description\": \"The write_mem() function shall, after successfully reading the physical address from the input 'ppos' pointer, validate the physical address range by calling valid_phys_addr_range() with the physical address and the input 'count'. If valid_phys_addr_range() indicates that the requested physical address range is invalid, it shall return -EFAULT.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:35"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:38",
+      "subject": "spdx:file:basil:software-requirement:38",
+      "statement": "{\"id\": 38, \"title\": \"WRITE-MEM-005\", \"description\": \"The write_mem() function shall, for each page in the requested range, determine if the page is allowed for writing by calling page_is_allowed() with the page frame number derived from the physical address 'p'. If page_is_allowed() returns `1`, indicating the page is allowed for writing, it shall obtain a kernel virtual address for the physical address 'p' by calling xlate_dev_mem_ptr(). If xlate_dev_mem_ptr() returns `NULL` and no bytes have been successfully written yet, it shall return -EFAULT.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:38"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:39",
+      "subject": "spdx:file:basil:software-requirement:39",
+      "statement": "{\"id\": 39, \"title\": \"WRITE-MEM-006\", \"description\": \"The write_mem() function shall, for each page in the requested range, determine if the page is allowed for writing by calling page_is_allowed() with the page frame number derived from the physical address 'p'. If page_is_allowed() returns `1`, indicating the page is allowed for writing, it shall obtain a kernel virtual address for the physical address 'p' by calling xlate_dev_mem_ptr(). If xlate_dev_mem_ptr() returns `NULL` and some bytes have already been successfully written, it shall stop the write operation and return the total number of bytes written so far.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:39"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:40",
+      "subject": "spdx:file:basil:software-requirement:40",
+      "statement": "{\"id\": 40, \"title\": \"WRITE-MEM-007\", \"description\": \"The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() indicates that some bytes failed to copy (i.e., returns a non-zero value) and no bytes have been successfully written yet, it shall return -EFAULT.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:40"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:41",
+      "subject": "spdx:file:basil:software-requirement:41",
+      "statement": "{\"id\": 41, \"title\": \"WRITE-MEM-008\", \"description\": \"The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() indicates that some bytes failed to copy (i.e., returns a non-zero value) and some bytes have already been successfully written, it shall update the total 'written' count with the partially copied bytes, stop the write operation, and return the total number of bytes written so far.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:41"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:42",
+      "subject": "spdx:file:basil:software-requirement:42",
+      "statement": "{\"id\": 42, \"title\": \"WRITE-MEM-009\", \"description\": \"The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `2`, indicating the page is allowed but restricted (e.g., read-only or special handling), skip the actual writing operation for that page. It shall then adjust the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by the size of the current page segment, and continue processing the next segment.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:42"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:43",
+      "subject": "spdx:file:basil:software-requirement:43",
+      "statement": "{\"id\": 43, \"title\": \"WRITE-MEM-010\", \"description\": \"The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() successfully copies all bytes (returns `0`), it shall update the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by the size of the current page segment. If should_stop_iteration() then returns `true`, it shall stop the write operation and return the total number of bytes written so far.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:43"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:44",
+      "subject": "spdx:file:basil:software-requirement:44",
+      "statement": "{\"id\": 44, \"title\": \"WRITE-MEM-011\", \"description\": \"The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() successfully copies all bytes (returns `0`), it shall update the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by the size of the current page segment. If should_stop_iteration() then returns `false`, it shall continue processing the next segment until the input 'count' becomes zero or less. Upon successful completion of all requested writes, it shall update the input 'ppos' pointer by the total number of bytes written and return the total number of bytes written.\", \"status\": \"NEW\", \"created_by\": \"lpellecc\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 09:16\", \"__tablename__\": \"sw_requirements\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:44"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:344",
+      "subject": "spdx:file:basil:document:344",
+      "statement": "{\"id\": 344, \"title\": \"Technical Annex\", \"document_type\": \"text\", \"description\": \"Technical annex for the function memory_lseek - version b4e07588e743c989499ca24d49e752c074924a9a\", \"spdx_relation\": \"DOCUMENT\", \"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/technical_annex/memory_lseek.md\", \"offset\": 0, \"section\": \"# Technical Annex of memory_lseek\\n\\n\\n## Function description\\n\\nThe 'memory_lseek' function successfully repositions the file offset of the open file associated with the 'file' parameter. It allows setting the file's current position to a new 'offset' based on the 'orig' parameter. If the 'orig' parameter is 'SEEK_CUR', the 'offset' is added to the current file position. If 'orig' is 'SEEK_SET', the 'offset' is interpreted as an absolute position from the beginning of the file. Upon successful repositioning, the function updates the 'f_pos' member of the 'struct file' and returns the new file position.\\n\\n\\n## Input parameters\\n\\nThe 'file' parameter is a pointer to a 'struct file', which represents an open file descriptor. It encapsulates all the necessary information about an open file, including its current position ('f_pos'), the associated inode, and other operational details. The 'offset' parameter is a 'loff_t' (long long offset type) which specifies the target position to seek to, or a relative offset from the current position, depending on the 'orig' parameter. The 'orig' parameter is an integer that defines the reference point for the seek operation. If 'orig' is 'SEEK_CUR', 'offset' is added to the current file position ('f_pos'). If 'orig' is 'SEEK_SET', 'offset' specifies an absolute position from the beginning of the file.\\n\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"lpellecc\", \"version\": \"2\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 11:01\", \"__tablename__\": \"documents\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:344"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:345",
+      "subject": "spdx:file:basil:document:345",
+      "statement": "{\"id\": 345, \"title\": \"Technical Annex\", \"document_type\": \"text\", \"description\": \"Technical annex for the function memory_open - version b4e07588e743c989499ca24d49e752c074924a9a\", \"spdx_relation\": \"DOCUMENT\", \"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/technical_annex/memory_open.md\", \"offset\": 0, \"section\": \"# Technical Annex of memory_open\\n\\n\\n## Function description\\n\\nThis function initializes the file operations and access mode for a memory device file when it is opened. It identifies the target memory device using the inode's minor number, verifies its existence and associated file operations, and then sets the file's operations table and access mode. If a specific 'open' callback is defined for the memory device, it is invoked to perform any device-specific setup.\\n\\n\\n## Input parameters\\n\\nThe 'inode' parameter (struct inode *) represents a file system inode, which is a data structure in a Unix-style file system that describes a file system object such as a file or a directory. It contains metadata about the file, like its permissions, owner, group, size, timestamps, and links to the data blocks on disk. In the context of 'memory_open', it specifically provides information about the device file being opened, allowing the kernel to identify the specific memory device by its minor number. The 'filp' parameter (struct file *) represents an open file description, which is an in-kernel data structure that stores the state of an open file. It contains information like the current file offset, the file's mode (read/write), and a pointer to the file's operations table (f_op). For 'memory_open', this parameter is modified to set the appropriate file operations and access mode for the specific memory device being opened, allowing subsequent operations on the file to be handled correctly.\\n\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"lpellecc\", \"version\": \"2\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 11:01\", \"__tablename__\": \"documents\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:345"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:346",
+      "subject": "spdx:file:basil:document:346",
+      "statement": "{\"id\": 346, \"title\": \"Technical Annex\", \"document_type\": \"text\", \"description\": \"Technical annex for the function mmap_mem_prepare - version b4e07588e743c989499ca24d49e752c074924a9a\", \"spdx_relation\": \"DOCUMENT\", \"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/technical_annex/mmap_mem_prepare.md\", \"offset\": 0, \"section\": \"# Technical Annex of mmap_mem_prepare\\n\\n\\n## Function description\\n\\nThe function 'mmap_mem_prepare' prepares a memory region described by 'desc' for memory mapping. It performs several validation checks including ensuring the mapping fits within physical address space, checking for address wrapping, verifying the validity of the physical address range, and confirming access permissions. It also sets up the appropriate memory operations and marks the range for I/O flag. Finally, it sets up an error hook to filter remapping errors.\\n\\n\\n## Input parameters\\n\\nThe 'desc' parameter is a pointer to a 'struct vm_area_desc'. This structure encapsulates all the necessary information for establishing a memory-mapped region. It holds details such as the file descriptor ('file') associated with the mapping, the offset within the physical memory ('pgoff'), the size of the mapping, and the memory protection flags ('page_prot'). It is crucial for guiding the memory mapping process by defining the specific characteristics and permissions of the memory area to be prepared for mapping. 'desc' represents the user's request for how a memory region should be mapped into a process's address space.\\n\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"lpellecc\", \"version\": \"2\", \"used\": true, \"created_at\": \"2026-04-24 09:15\", \"updated_at\": \"2026-04-24 11:00\", \"__tablename__\": \"documents\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:346"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:347",
+      "subject": "spdx:file:basil:document:347",
+      "statement": "{\"id\": 347, \"title\": \"Technical Annex\", \"document_type\": \"text\", \"description\": \"Technical annex for the function open_port - version b4e07588e743c989499ca24d49e752c074924a9a\", \"spdx_relation\": \"DOCUMENT\", \"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/technical_annex/open_port.md\", \"offset\": 0, \"section\": \"# Technical Annex of open_port\\n\\n\\n## Function description\\n\\nThis function handles the opening of the \\\"/dev/mem\\\" character device. Upon successful execution, it first verifies that the calling process possesses the \\\"CAP_SYS_RAWIO\\\" capability and that the system is not under a \\\"LOCKDOWN_DEV_MEM\\\" restriction. If these checks pass and the \\\"inode\\\" corresponds to the \\\"/dev/mem\\\" minor number, the function then assigns a unified memory mapping (\\\"f_mapping\\\") to the \\\"struct file\\\" object. This mapping is specifically designed to manage revocations of \\\"/dev/mem\\\" mapped ranges, ensuring a consistent approach when device drivers need to take control of these memory areas. If the \\\"inode\\\" does not correspond to \\\"/dev/mem\\\", the function gracefully exits without further action, indicating it's not responsible for that particular device.\\n\\n\\n## Input parameters\\n\\nThe \\\"inode\\\" parameter, a pointer to a \\\"struct inode\\\", represents the metadata of the file or device being opened. It is a core VFS structure containing information like device numbers (major and minor), permissions, and ownership. For \\\"open_port\\\", it identifies the specific \\\"/dev/mem\\\" device being accessed, particularly through its minor device number. The \\\"filp\\\" parameter, a pointer to a \\\"struct file\\\", represents the specific open file description for the device. This structure holds state unique to the open instance, such as the file's position and, crucially for this function, the \\\"f_mapping\\\" field, which dictates how the device's memory regions are managed and mapped.\\n\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"lpellecc\", \"version\": \"2\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 11:01\", \"__tablename__\": \"documents\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:347"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:348",
+      "subject": "spdx:file:basil:document:348",
+      "statement": "{\"id\": 348, \"title\": \"Technical Annex\", \"document_type\": \"text\", \"description\": \"Technical annex for the function read_mem - version b4e07588e743c989499ca24d49e752c074924a9a\", \"spdx_relation\": \"DOCUMENT\", \"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/technical_annex/read_mem.md\", \"offset\": 0, \"section\": \"# Technical Annex of read_mem\\n\\n\\n## Function description\\n\\nThe `read_mem` function reads a specified number of bytes from physical memory into a user-provided buffer. It validates the requested physical address range for access, safely transfers data from kernel-controlled physical memory to user space via a bounce buffer, and adheres to memory access permissions for individual physical pages. The function handles architectural specifics like the absence of page 0 mapping and updates the file offset after a successful read.\\n\\n\\n## Input parameters\\n\\nThe `file` parameter is a pointer to a `struct file`, which represents an open instance of a device file (e.g., `/dev/mem`). Although its internal members are not directly accessed within this specific `read_mem` implementation, its presence adheres to the standard signature for a character device's `read` operation, providing the necessary context for the file descriptor operation within the kernel's Virtual File System (VFS) layer. The `buf` parameter is a `char __user *`, a pointer to a user-space buffer where the data read from physical memory will be stored. The `__user` attribute signifies that this memory belongs to the calling user process and must be accessed using safe kernel functions like `copy_to_user` or `clear_user`. The `count` parameter, of type `size_t`, specifies the maximum number of bytes that the `read_mem` function should attempt to read from physical memory. The `ppos` parameter is a pointer to an `loff_t` variable, representing the current offset within the virtual file from which the read operation should commence. This offset is interpreted as the physical memory address (`phys_addr_t p = *ppos;`) for the read. Upon successful completion, `read_mem` updates the value pointed to by `ppos` by the total number of bytes successfully read, advancing the file pointer for subsequent operations.\\n\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"lpellecc\", \"version\": \"2\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 10:59\", \"__tablename__\": \"documents\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:348"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:349",
+      "subject": "spdx:file:basil:document:349",
+      "statement": "{\"id\": 349, \"title\": \"Technical Annex\", \"document_type\": \"text\", \"description\": \"Technical annex for the function write_mem - version b4e07588e743c989499ca24d49e752c074924a9a\", \"spdx_relation\": \"DOCUMENT\", \"url\": \"/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/technical_annex/write_mem.md\", \"offset\": 0, \"section\": \"# Technical Annex of write_mem\\n\\n\\n## Function description\\n\\nThe `write_mem` function writes data from a user-space buffer to physical memory. It verifies that the specified physical address range is valid and handles page-aligned writing, ensuring that data is written only to allowed memory pages. The function iterates through the requested memory range, copying data page by page while respecting memory permissions and architecture-specific considerations like uncached memory access. Upon successful completion, it returns the total number of bytes written and updates the file offset accordingly.\\n\\n\\n## Input parameters\\n\\nThe `file` parameter is a pointer to a `struct file` which represents an open file object. It contains information about the file, such as its current offset, access rights, and associated inode. In the context of `write_mem`, this parameter is typically used to provide the context of the file operation, although its fields are not directly accessed by `write_mem` itself, it's a standard parameter for file operations. The `buf` parameter is a pointer to a user-space buffer containing the data to be written to memory. The `count` parameter specifies the number of bytes to write from the user-space buffer. The `ppos` parameter is a pointer to a `loff_t` variable, which holds the current physical memory address offset where the writing operation should begin. This offset is updated by the function to reflect the total number of bytes successfully written.\\n\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"lpellecc\", \"version\": \"2\", \"used\": true, \"created_at\": \"2026-04-24 09:16\", \"updated_at\": \"2026-04-24 11:00\", \"__tablename__\": \"documents\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:349"
+    },
+    {
+      "@id": "_:sbom_creation_info",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:3"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-05-08T15:04:22Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:api:352",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:40Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:41Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:41Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:42Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:42Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:5",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:43Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:6",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:43Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:7",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:44Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:8",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:50Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:51Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:9",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:51Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:10",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:52Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:11",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:52Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:12",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:59Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:00Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:13",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:00Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:14",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:00Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:15",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:16",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:02Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:17",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:03Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:18",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:03Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:19",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:09Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:5",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:10Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:20",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:10Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:21",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:11Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:22",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:12Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:23",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:18Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:6",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:19Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:24",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:19Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:25",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:19Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:26",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:20Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:36",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:33Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:352:7",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:21Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:27",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:21Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:28",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:22Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:29",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:22Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:30",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:23Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:37",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:34Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:31",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:24Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:32",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:25Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:33",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:26Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:34",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:32Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:35",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:33Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:38",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:35Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:39",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:36Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:40",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:36Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:41",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:37Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:42",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:38Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:43",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:39Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:44",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:39Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:344",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:41Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:345",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:50Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:346",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:15:58Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:347",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:09Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:348",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:18Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:349",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:2"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-04-24T09:16:31Z"
+    },
+    {
+      "type": "Person",
+      "spdxId": "spdx:person:basil:user:3",
+      "name": "gpaoloni",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Person",
+      "spdxId": "spdx:person:basil:user:2",
+      "name": "lpellecc",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:1",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:file:basil:api:reference-document:352"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:2",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:3",
+      "from": "spdx:snippet:api:352:1",
+      "to": [
+        "spdx:file:basil:software-requirement:3"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:4",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:5",
+      "from": "spdx:snippet:api:352:1",
+      "to": [
+        "spdx:file:basil:software-requirement:4"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:6",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:7",
+      "from": "spdx:snippet:api:352:1",
+      "to": [
+        "spdx:file:basil:software-requirement:5"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:8",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:9",
+      "from": "spdx:snippet:api:352:1",
+      "to": [
+        "spdx:file:basil:software-requirement:6"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:10",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:11",
+      "from": "spdx:snippet:api:352:1",
+      "to": [
+        "spdx:file:basil:software-requirement:7"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:12",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:2"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:13",
+      "from": "spdx:snippet:api:352:2",
+      "to": [
+        "spdx:file:basil:software-requirement:8"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:14",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:2"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:15",
+      "from": "spdx:snippet:api:352:2",
+      "to": [
+        "spdx:file:basil:software-requirement:9"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:16",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:2"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:17",
+      "from": "spdx:snippet:api:352:2",
+      "to": [
+        "spdx:file:basil:software-requirement:10"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:18",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:2"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:19",
+      "from": "spdx:snippet:api:352:2",
+      "to": [
+        "spdx:file:basil:software-requirement:11"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:20",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:21",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:12"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:22",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:23",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:13"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:24",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:25",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:14"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:26",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:27",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:15"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:28",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:29",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:16"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:30",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:31",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:17"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:32",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:33",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:software-requirement:18"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:34",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:35",
+      "from": "spdx:snippet:api:352:4",
+      "to": [
+        "spdx:file:basil:software-requirement:19"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:36",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:37",
+      "from": "spdx:snippet:api:352:4",
+      "to": [
+        "spdx:file:basil:software-requirement:20"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:38",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:39",
+      "from": "spdx:snippet:api:352:4",
+      "to": [
+        "spdx:file:basil:software-requirement:21"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:40",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:41",
+      "from": "spdx:snippet:api:352:4",
+      "to": [
+        "spdx:file:basil:software-requirement:22"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:42",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:43",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:23"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:44",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:45",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:24"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:46",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:47",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:25"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:48",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:49",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:26"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:50",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:51",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:36"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:52",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:53",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:27"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:54",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:55",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:28"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:56",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:57",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:29"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:58",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:59",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:30"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:60",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:61",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:37"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:62",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:63",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:31"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:64",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:65",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:32"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:66",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:67",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:software-requirement:33"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:68",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:69",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:34"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:70",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:71",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:35"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:72",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:73",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:38"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:74",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:75",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:39"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:76",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:77",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:40"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:78",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:79",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:41"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:80",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:81",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:42"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:82",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:83",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:43"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:84",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:85",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:software-requirement:44"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:86",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:87",
+      "from": "spdx:snippet:api:352:1",
+      "to": [
+        "spdx:file:basil:document:344"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:88",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:2"
+      ],
+      "relationshipType": "contains",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:89",
+      "from": "spdx:snippet:api:352:2",
+      "to": [
+        "spdx:file:basil:document:345"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:90",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:91",
+      "from": "spdx:snippet:api:352:3",
+      "to": [
+        "spdx:file:basil:document:346"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:92",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:93",
+      "from": "spdx:snippet:api:352:4",
+      "to": [
+        "spdx:file:basil:document:347"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:94",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:95",
+      "from": "spdx:snippet:api:352:5",
+      "to": [
+        "spdx:file:basil:document:348"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:96",
+      "from": "spdx:file:basil:api:352",
+      "to": [
+        "spdx:snippet:api:352:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:97",
+      "from": "spdx:snippet:api:352:6",
+      "to": [
+        "spdx:file:basil:document:349"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "complete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:98",
+      "from": "spdx:file:basil:library:char",
+      "to": [
+        "spdx:file:basil:api:352"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "SpdxDocument",
+      "spdxId": "spdx:document:spdx:document:basil:export:char",
+      "dataLicense": "spdx:license:char",
+      "rootElement": [
+        "spdx:file:basil:library:char"
+      ],
+      "name": "BASIL SBOM export for library char",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Tool",
+      "spdxId": "https://github.com/elisa-tech/BASIL",
+      "name": "BASIL",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "simplelicensing_LicenseExpression",
+      "spdxId": "spdx:license:char",
+      "simplelicensing_licenseExpression": "NOASSERTION",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:library:char",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "library",
+      "name": "Library char",
+      "comment": "BASIL Library char",
+      "description": "BASIL Library char",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "1d53e5c817eb5d25ef20d965a3ebfbb8"
+        }
+      ],
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:api:352",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "module",
+      "name": "mem",
+      "comment": "BASIL Software Component id 352",
+      "description": "BASIL Software Component id 352",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "4fcfe1b13b370cc89346348d2dc6ac3b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:api:352"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:api:reference-document:352",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "specification",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "BASIL Reference Document for Software Component mem",
+      "description": "BASIL Reference Document for Software Component mem of library char",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "6897d4c9b64cdda15642e704018cdd18"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:api:352"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:3",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-LSEEK-001",
+      "comment": "BASIL Software Requirement ID 3",
+      "description": "The memory_lseek() function shall:\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\n\n+ check the input orig value; if it is the SEEK_CUR() macro, increment the input offset by the current file position stored in the f_pos member of the input file and fall through to the SEEK_SET() case.\n+ in the SEEK_SET() case, check if the resulting offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\n+ if the condition is met, set the return value to the -EOVERFLOW() macro, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return -EOVERFLOW().",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "7ece9b1c7f6266d2c3260405972daf80"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:3"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:4",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-LSEEK-002",
+      "comment": "BASIL Software Requirement ID 4",
+      "description": "The memory_lseek() function shall:\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\n\n+ check the input orig value; if it is the SEEK_CUR() macro, increment the input offset by the current file position stored in the f_pos member of the input file and fall through to the SEEK_SET() case.\n+ in the SEEK_SET() case, check if the resulting offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\n+ if the condition is not met, update the f_pos member of the input file with the calculated offset, set the return value to the new file position, call the force_successful_syscall_return() macro to ensure the return value is not treated as an error by the system's syscall handling mechanism, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return the new file position.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "d75d9f460d6411765c46e43bb0f10f30"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:4"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:5",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-LSEEK-003",
+      "comment": "BASIL Software Requirement ID 5",
+      "description": "The memory_lseek() function shall:\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\n\n+ check the input orig value; if it is the SEEK_SET() macro, check if the input offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\n+ if the condition is met, set the return value to the -EOVERFLOW() macro, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return -EOVERFLOW().",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "99e1ae875eebc372baad1b9727bb6033"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:5"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:6",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-LSEEK-004",
+      "comment": "BASIL Software Requirement ID 6",
+      "description": "The memory_lseek() function shall:\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\n\n+ check the input orig value; if it is the SEEK_SET() macro, check if the input offset, when cast to an unsigned long long, is greater than or equal to the negated MAX_ERRNO() macro to prevent the file position from being misinterpreted as an error code by userspace.\n+ if the condition is not met, update the f_pos member of the input file with the input offset, set the return value to the new file position, call the force_successful_syscall_return() macro to ensure the return value is not treated as an error by the system's syscall handling mechanism, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return the new file position.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "72a22e0d98f18b2b21b0a6577bfb3f4b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:6"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:7",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-LSEEK-005",
+      "comment": "BASIL Software Requirement ID 7",
+      "description": "The memory_lseek() function shall:\n+ acquire the lock for the inode associated with the input file by calling inode_lock() on the result of file_inode() with input file as argument to ensure exclusive access to the file position.\n\n+ check the input orig value; if it is neither the SEEK_CUR() macro nor the SEEK_SET() macro, set the return value to the -EINVAL() macro, release the inode lock by calling inode_unlock() on the result of file_inode() with input file as argument, and return -EINVAL().",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "454f0ae8c2b6e73327ba553ec0455e89"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:7"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:8",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-OPEN-001",
+      "comment": "BASIL Software Requirement ID 8",
+      "description": "The memory_open() function shall:\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\n\n+ return '-ENXIO' if the obtained minor number is greater than or equal to the size of the 'devlist' array, as determined by the 'ARRAY_SIZE()' macro, indicating that the requested device index is out of bounds.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "168e6e20d772fc8b49432fe96a63f7ed"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:8"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:9",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-OPEN-002",
+      "comment": "BASIL Software Requirement ID 9",
+      "description": "The memory_open() function shall:\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\n\n+ access the 'memdev' structure at the index corresponding to the minor number in the 'devlist' array if the minor number is less than the size of the 'devlist' array as determined by the 'ARRAY_SIZE()' macro.\n+ return '-ENXIO' if the 'fops' pointer of the accessed 'memdev' structure is NULL, indicating that no file operations are defined for the device.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "6f23f52514edbe1b19dadb7ae23337f0"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:9"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:10",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-OPEN-003",
+      "comment": "BASIL Software Requirement ID 10",
+      "description": "The memory_open() function shall:\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\n\n+ access the 'memdev' structure at the index corresponding to the minor number in the 'devlist' array if the minor number is less than the size of the 'devlist' array as determined by the 'ARRAY_SIZE()' macro.\n+ perform the following if the 'fops' pointer of the accessed 'memdev' structure is not NULL:\n    + update the 'f_op' field of the input filp with the 'fops' pointer to associate the file with the device-specific operations.\n    + update the 'f_mode' field of the input filp by performing a bitwise OR with the 'fmode' value from the 'memdev' structure to set the supported file modes.\n    + call the 'open' function pointer within the 'fops' structure, passing the input inode and input filp, and return its result if the 'open' pointer is not NULL.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "bb56ccf94ac56bbfe72f1395321e20bd"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:10"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:11",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MEMORY-OPEN-004",
+      "comment": "BASIL Software Requirement ID 11",
+      "description": "The memory_open() function shall:\n+ obtain the minor device number from the input inode using the iminor() macro to identify the specific character device within the 'devlist' array.\n\n+ access the 'memdev' structure at the index corresponding to the minor number in the 'devlist' array if the minor number is less than the size of the 'devlist' array as determined by the 'ARRAY_SIZE()' macro.\n+ perform the following if the 'fops' pointer of the accessed 'memdev' structure is not NULL:\n    + update the 'f_op' field of the input filp with the 'fops' pointer to associate the file with the device-specific operations.\n    + update the 'f_mode' field of the input filp by performing a bitwise OR with the 'fmode' value from the 'memdev' structure to set the supported file modes.\n    + return 0 if the 'open' function pointer within the 'fops' structure is NULL, indicating successful opening of the device without a specific initialization callback.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "2dd68685278f030e1b44c196cc014cd4"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:11"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:12",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-001",
+      "comment": "BASIL Software Requirement ID 12",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ return -EINVAL if the calculated offset cannot be represented within a phys_addr_t type (detected when the offset shifted back by PAGE_SHIFT does not equal the input desc->pgoff).",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "c93583e49ecb5612dc005e818e1523d3"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:12"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:13",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-002",
+      "comment": "BASIL Software Requirement ID 13",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ calculate the mapping size using vma_desc_size() with the input desc.\n+ return -EINVAL if the sum of the offset and the size (minus one) wraps around the end of the physical address space.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "14b65144768239abcc292f259515d34a"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:13"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:14",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-003",
+      "comment": "BASIL Software Requirement ID 14",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ calculate the mapping size using vma_desc_size() with the input desc.\n+ return -EINVAL if the physical address range defined by the input desc->pgoff and the calculated size is determined to be invalid by valid_mmap_phys_addr_range().",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "12d093929cdab5239955d6acddfa6865"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:14"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:15",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-004",
+      "comment": "BASIL Software Requirement ID 15",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ calculate the mapping size using vma_desc_size() with the input desc.\n+ return -ENOSYS if the mapping is private (e.g., MAP_PRIVATE) and this is determined to be unsupported by private_mapping_ok() for the input desc.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "943d6d734a124ff0aa1dd68612f81547"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:15"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:16",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-005",
+      "comment": "BASIL Software Requirement ID 16",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ calculate the mapping size using vma_desc_size() with the input desc.\n+ return -EPERM if access to the physical address range defined by the input desc->pgoff and the calculated size is restricted by range_is_allowed().",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "d235d45d11e0749502acf0af5b5abb77"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:16"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:17",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-006",
+      "comment": "BASIL Software Requirement ID 17",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ calculate the mapping size using vma_desc_size() with the input desc.\n+ return -EINVAL if the memory access protection for the range is not allowed as determined by phys_mem_access_prot_allowed() using the input desc->file, the input desc->pgoff, the calculated size, and the input desc->page_prot.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "2fe3c1bf7a682b806865d5596cc8e1f1"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:17"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:18",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "MMAP-MEM-PREPARE-007",
+      "comment": "BASIL Software Requirement ID 18",
+      "description": "The mmap_mem_prepare() shall:\n+ calculate the physical address offset by shifting the input desc->pgoff by PAGE_SHIFT.\n+ calculate the mapping size using vma_desc_size() with the input desc.\n+ update the input desc->page_prot using phys_mem_access_prot() based on the input desc->file, the input desc->pgoff, the calculated size, and the current input desc->page_prot.\n+ set the input desc->vm_ops to point to the global mmap_mem_ops structure.\n+ initiate the remapping of the physical range by calling mmap_action_remap_full() with the input desc and the input desc->pgoff.\n+ assign the mmap_filter_error() function to the input desc->action.error_hook to filter remap errors to -EAGAIN.\n+ return 0 to indicate successful preparation.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "05a9fe73ac519e338a80b368fd8c4d75"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:18"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:19",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "OPEN-PORT-001",
+      "comment": "BASIL Software Requirement ID 19",
+      "description": "The open_port() function shall perform the following steps:\n\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is not present, it shall return -EPERM.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "c57cf17cd862427d047914169c54b2ed"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:19"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:20",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "OPEN-PORT-002",
+      "comment": "BASIL Software Requirement ID 20",
+      "description": "The open_port() function shall perform the following steps:\n\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is present, it shall check if the kernel is locked down for LOCKDOWN_DEV_MEM by calling security_locked_down(). If security_locked_down() returns a non-zero error code, it shall return that error code.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "97774768619fa6a0c0aadbbd2758decb"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:20"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:21",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "OPEN-PORT-003",
+      "comment": "BASIL Software Requirement ID 21",
+      "description": "The open_port() function shall perform the following steps:\n\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is present, it shall check if the kernel is locked down for LOCKDOWN_DEV_MEM by calling security_locked_down(). If security_locked_down() returns 0, it shall check the minor number of input inode using iminor(). If the minor number is not equal to DEVMEM_MINOR, it shall return 0.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "e7925f938a92fe4b64f886afb984e36a"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:21"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:22",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "OPEN-PORT-004",
+      "comment": "BASIL Software Requirement ID 22",
+      "description": "The open_port() function shall perform the following steps:\n\n+ check for the CAP_SYS_RAWIO capability by calling capable(). If the capability is present, it shall check if the kernel is locked down for LOCKDOWN_DEV_MEM by calling security_locked_down(). If security_locked_down() returns 0, it shall check the minor number of input inode using iminor(). If the minor number is equal to DEVMEM_MINOR, it shall set the f_mapping field of input filp to the mapping returned by iomem_get_mapping() and return 0.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "826bca938bf0948d7c7b14f2a4abc3c8"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:22"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:23",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-001",
+      "comment": "BASIL Software Requirement ID 23",
+      "description": "The `read_mem()` function shall return `0` if the value of the input parameter `*ppos` changes between its initial read into a local variable `p` and a subsequent comparison, indicating a race condition.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "648769a142610379daf37a52ab7e963c"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:23"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:24",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-002",
+      "comment": "BASIL Software Requirement ID 24",
+      "description": "The `read_mem()` function shall return `-EFAULT` if the `valid_phys_addr_range()` function indicates that the physical address range defined by the current physical address `p` (initialized from the input parameter `*ppos`) and the input parameter `count` is invalid for direct access.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "2f174a683936581b090d021985412381"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:24"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:25",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-003",
+      "comment": "BASIL Software Requirement ID 25",
+      "description": "The `read_mem()` function shall return `-ENOMEM` if the `kmalloc()` function fails to allocate a `PAGE_SIZE` kernel memory buffer using the `GFP_KERNEL` allocation flag, which is used as a bounce buffer for data transfer.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "e4e3576fb6ee69c732de5a63e22bbd38"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:25"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:26",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-004",
+      "comment": "BASIL Software Requirement ID 26",
+      "description": "The `read_mem()` function shall:\n+ if the `__ARCH_HAS_NO_PAGE_ZERO_MAPPED` macro is defined and the current physical address `p` (initialized from the input parameter `*ppos`) is less than `PAGE_SIZE`, calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n+ return `-EFAULT` if `sz` is greater than `0` and the `clear_user()` function fails to clear `sz` bytes in the input parameter `buf` user memory.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "869d0d6eae842fe3bbcdf3adb5245104"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:26"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:36",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-003",
+      "comment": "BASIL Software Requirement ID 36",
+      "description": "The write_mem() function shall, after successfully validating the physical address range, and if the `__ARCH_HAS_NO_PAGE_ZERO_MAPPED` macro is defined and the physical address 'p' is less than PAGE_SIZE(), calculate the size of the data within the first page using size_inside_page(). It shall then adjust the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by this size, effectively skipping the zero page, and then proceed to write the remaining data.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "4c0a0a6a73197f32ebf932c7c203f8d7"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:36"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:27",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-005",
+      "comment": "BASIL Software Requirement ID 27",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall return `-EPERM` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is not allowed for access (returns `0`).",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "1d969f1e2ae76d9171f5d53641e1f4b6"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:27"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:28",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-006",
+      "comment": "BASIL Software Requirement ID 28",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is restricted (returns `2`), and the `clear_user()` function fails to clear `sz` bytes in the input parameter `buf` user memory.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "2f30ee5f167c794053fc812c4af8408c"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:28"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:29",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-007",
+      "comment": "BASIL Software Requirement ID 29",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is allowed (returns `1`), and the `xlate_dev_mem_ptr()` function fails to translate the physical address `p` to a kernel virtual address (returns `NULL`).",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "500badfff70c47411e3f5bba71f2dd21"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:29"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:30",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-008",
+      "comment": "BASIL Software Requirement ID 30",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is allowed (returns `1`), the `xlate_dev_mem_ptr()` function successfully translates the physical address `p` to a kernel virtual address, and the `copy_from_kernel_nofault()` function fails to copy `sz` bytes from the translated kernel address to the allocated bounce buffer.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "9540ee30f45d9c6be7510a8aa6be86b5"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:30"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:37",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-004",
+      "comment": "BASIL Software Requirement ID 37",
+      "description": "The write_mem() function shall, for each page in the requested range, determine if the page is allowed for writing by calling page_is_allowed() with the page frame number derived from the physical address 'p'. If page_is_allowed() returns `0`, indicating the page is not allowed for any access, it shall return -EPERM.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "d16568fa8393b071df764e8e1ab7d575"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:37"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:31",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-009",
+      "comment": "BASIL Software Requirement ID 31",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall return `-EFAULT` if the `page_is_allowed()` function indicates that the physical page frame number derived from the current physical address `p` is allowed (returns `1`), the `xlate_dev_mem_ptr()` function successfully translates the physical address `p` to a kernel virtual address, the `copy_from_kernel_nofault()` function successfully copies data to the bounce buffer, and the `copy_to_user()` function fails to copy `sz` bytes from the bounce buffer to the input parameter `buf` user memory.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "760a2336ae7931e56b9810049049ed0a"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:31"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:32",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-010",
+      "comment": "BASIL Software Requirement ID 32",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall return the total number of bytes successfully read so far if the `should_stop_iteration()` function indicates that the read operation should be prematurely stopped.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "47b311a5791c09550107c91d939b76bc"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:32"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:33",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "READ-MEM-011",
+      "comment": "BASIL Software Requirement ID 33",
+      "description": "The `read_mem()` function shall calculate the number of bytes `sz` that can be read within the current page using `size_inside_page()` for the current physical address `p` and the input parameter `count`.\n\nThe `read_mem()` function shall successfully read `count` bytes from physical memory into the input parameter `buf` user memory by iteratively:\n+ checking if the physical page frame number derived from the current physical address `p` is allowed using `page_is_allowed()`.\n+ if `page_is_allowed()` returns `2` (restricted), clearing `sz` bytes in the input parameter `buf` using `clear_user()`.\n+ if `page_is_allowed()` returns `1` (allowed), translating the physical address `p` to a kernel virtual address using `xlate_dev_mem_ptr()`, copying `sz` bytes from the translated kernel address to an internally allocated bounce buffer using `copy_from_kernel_nofault()`, and then copying `sz` bytes from the bounce buffer to the input parameter `buf` using `copy_to_user()`.\n+ updating the current physical address `p`, the remaining `count`, and the total `read` bytes.\n\nUpon completion of the read operation, the `read_mem()` function shall:\n+ free the allocated bounce buffer using `kfree()`.\n+ update the input parameter `*ppos` by adding the total number of bytes read.\n+ return the total number of bytes successfully read.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "052669bfb4125c8e8a6d583ead789d7b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:33"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:34",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-001",
+      "comment": "BASIL Software Requirement ID 34",
+      "description": "The write_mem() function shall, upon invocation, read the physical address from the input 'ppos' pointer. If the physical address read from the input 'ppos' pointer is not equal to the value of the input 'ppos' pointer after the read operation, indicating a concurrent modification or an invalid address, it shall return -EFBIG.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "88fe9d84828e07f01a3144dbce246ddc"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:34"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:35",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-002",
+      "comment": "BASIL Software Requirement ID 35",
+      "description": "The write_mem() function shall, after successfully reading the physical address from the input 'ppos' pointer, validate the physical address range by calling valid_phys_addr_range() with the physical address and the input 'count'. If valid_phys_addr_range() indicates that the requested physical address range is invalid, it shall return -EFAULT.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "c646010d65b5e9129dccc8a137f5f0f0"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:35"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:38",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-005",
+      "comment": "BASIL Software Requirement ID 38",
+      "description": "The write_mem() function shall, for each page in the requested range, determine if the page is allowed for writing by calling page_is_allowed() with the page frame number derived from the physical address 'p'. If page_is_allowed() returns `1`, indicating the page is allowed for writing, it shall obtain a kernel virtual address for the physical address 'p' by calling xlate_dev_mem_ptr(). If xlate_dev_mem_ptr() returns `NULL` and no bytes have been successfully written yet, it shall return -EFAULT.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "d878a85b0a05adb040d35d9af3392b5e"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:38"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:39",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-006",
+      "comment": "BASIL Software Requirement ID 39",
+      "description": "The write_mem() function shall, for each page in the requested range, determine if the page is allowed for writing by calling page_is_allowed() with the page frame number derived from the physical address 'p'. If page_is_allowed() returns `1`, indicating the page is allowed for writing, it shall obtain a kernel virtual address for the physical address 'p' by calling xlate_dev_mem_ptr(). If xlate_dev_mem_ptr() returns `NULL` and some bytes have already been successfully written, it shall stop the write operation and return the total number of bytes written so far.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "5da88e679c18493f0e125761ec8a91f1"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:39"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:40",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-007",
+      "comment": "BASIL Software Requirement ID 40",
+      "description": "The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() indicates that some bytes failed to copy (i.e., returns a non-zero value) and no bytes have been successfully written yet, it shall return -EFAULT.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "aca747f4874ad790c2846cd19cef9720"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:40"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:41",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-008",
+      "comment": "BASIL Software Requirement ID 41",
+      "description": "The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() indicates that some bytes failed to copy (i.e., returns a non-zero value) and some bytes have already been successfully written, it shall update the total 'written' count with the partially copied bytes, stop the write operation, and return the total number of bytes written so far.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "34da42c09756165b47f7fe9c8f75b871"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:41"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:42",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-009",
+      "comment": "BASIL Software Requirement ID 42",
+      "description": "The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `2`, indicating the page is allowed but restricted (e.g., read-only or special handling), skip the actual writing operation for that page. It shall then adjust the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by the size of the current page segment, and continue processing the next segment.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "cec3425ae6867fb1f2e7d3f18b93cda3"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:42"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:43",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-010",
+      "comment": "BASIL Software Requirement ID 43",
+      "description": "The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() successfully copies all bytes (returns `0`), it shall update the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by the size of the current page segment. If should_stop_iteration() then returns `true`, it shall stop the write operation and return the total number of bytes written so far.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "8ec9d5ca97950724e9e514865da36d2d"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:43"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:44",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "WRITE-MEM-011",
+      "comment": "BASIL Software Requirement ID 44",
+      "description": "The write_mem() function shall, for each page in the requested range, if page_is_allowed() returns `1` and xlate_dev_mem_ptr() provides a valid kernel virtual address, attempt to copy data from the input 'buf' to the kernel virtual address using copy_from_user(). After the copy, it shall release the kernel virtual address using unxlate_dev_mem_ptr(). If copy_from_user() successfully copies all bytes (returns `0`), it shall update the input 'buf' pointer, the physical address 'p', the input 'count', and the 'written' byte count by the size of the current page segment. If should_stop_iteration() then returns `false`, it shall continue processing the next segment until the input 'count' becomes zero or less. Upon successful completion of all requested writes, it shall update the input 'ppos' pointer by the total number of bytes written and return the total number of bytes written.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "e1fb1323e1c915a11445d6e34ea4f934"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:44"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:344",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "Technical Annex",
+      "comment": "BASIL Document ID 344",
+      "description": "Technical annex for the function memory_lseek - version b4e07588e743c989499ca24d49e752c074924a9a",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "a520cbce4214830c017e66ff825797cf"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:344"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:345",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "Technical Annex",
+      "comment": "BASIL Document ID 345",
+      "description": "Technical annex for the function memory_open - version b4e07588e743c989499ca24d49e752c074924a9a",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "1cc52990883cff29fcf36800d6379617"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:345"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:346",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "Technical Annex",
+      "comment": "BASIL Document ID 346",
+      "description": "Technical annex for the function mmap_mem_prepare - version b4e07588e743c989499ca24d49e752c074924a9a",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "cf1a0fe363d9351cdba7992c50e28345"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:346"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:347",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "Technical Annex",
+      "comment": "BASIL Document ID 347",
+      "description": "Technical annex for the function open_port - version b4e07588e743c989499ca24d49e752c074924a9a",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "734db7a82b153aeb55973aa0164a008a"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:347"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:348",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "Technical Annex",
+      "comment": "BASIL Document ID 348",
+      "description": "Technical annex for the function read_mem - version b4e07588e743c989499ca24d49e752c074924a9a",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "4585b9475281a549fae28c1b6b8a34ec"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:348"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:349",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "Technical Annex",
+      "comment": "BASIL Document ID 349",
+      "description": "Technical annex for the function write_mem - version b4e07588e743c989499ca24d49e752c074924a9a",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "ccf36b53c793909a1a6138c870cdb8c2"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:349"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:352:1",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "Snippet of api mem reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 1,
+        "endIntegerRange": 13365
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:352",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:1"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:352:2",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "Snippet of api mem reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 1,
+        "endIntegerRange": 16329
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:352",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:2"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:352:3",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "Snippet of api mem reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 1,
+        "endIntegerRange": 7751
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:352",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:3"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:352:4",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "Snippet of api mem reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 1,
+        "endIntegerRange": 13809
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:352",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:4"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:352:5",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "Snippet of api mem reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 1,
+        "endIntegerRange": 3349
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:352",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:5"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:352:6",
+      "name": "/BASIL-API/api/user-files/2/char/mem/b4e07588e743c989499ca24d49e752c074924a9a/source/mem.c",
+      "comment": "Snippet of api mem reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 1,
+        "endIntegerRange": 4716
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:352",
+      "creationInfo": "_:creation_info_spdx:snippet:api:352:6"
+    }
+  ]
+}

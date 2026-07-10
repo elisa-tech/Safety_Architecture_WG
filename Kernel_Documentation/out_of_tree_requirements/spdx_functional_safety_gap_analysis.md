@@ -1,4 +1,4 @@
-# Gap Analysis: BASIL SPDX Export vs. SPDX 3.0 FunctionalSafety Profile
+# Gap Analysis: BASIL SPDX Export vs. SPDX 3.1-dev FunctionalSafety Profile
 
 ## Context
 

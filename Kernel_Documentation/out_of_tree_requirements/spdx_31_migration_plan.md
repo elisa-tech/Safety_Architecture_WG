@@ -37,17 +37,25 @@ The gap analysis states that a `Requirement` class is being added to SPDX 3.1 **
 
 ---
 
-## Phase 0: Quick wins on the current SPDX 3.0.1 export
+## Phase 0: SPDX 3.0.1 compliance fixes
 
 **Objective**: Fix issues that don't require SPDX 3.1 and reduce noise in the export.
 
+The detailed gap analysis for this phase is documented in `spdx_functional_safety_gap_analysis.md`.
+
 **Changes to `spdx_manager.py`**:
 
-1. **Deduplicate `contains` relationships (Gap #9)**: The same `contains` (API -> snippet) relationship is emitted once per requirement mapped to that snippet. Emit it once per snippet.
+1. **Deduplicate `contains` relationships**: The same `contains` (API -> snippet) relationship is emitted once per requirement mapped to that snippet. Emit it once per snippet.
 
 2. **Consolidate `hasRequirement` targets**: Instead of N separate `hasRequirement` relationships (one per requirement per snippet), use a single relationship per snippet with multiple targets in the `to` array.
 
-3. **Add `ExternalIdentifier` to requirements**: Emit the BASIL requirement ID and title as `externalIdentifier` entries on each requirement element. Use `externalIdentifierType: "other"` (since `requirementUID` is a 3.1 addition) with `identifierLocator` pointing to the BASIL instance.
+3. **Fix invalid `hasDocument` relationship type**: Replace with `hasDocumentation` or `contains` — `hasDocument` is not a valid SPDX 3.0.1 type.
+
+4. **Add missing relationship types**: Use `describes` (SpdxDocument → root elements), `hasTestCase` (instead of generic `hasTest` for test cases), and `generates` (instead of `hasEvidence` for test case → test run).
+
+5. **Add `ExternalIdentifier` to requirements**: Emit the BASIL requirement ID and title as `externalIdentifier` entries on each requirement element. Use `externalIdentifierType: "other"` (since `requirementUID` is a 3.1 addition) with `identifierLocator` pointing to the BASIL instance.
+
+6. **Clean up annotations**: Remove redundant metadata already captured in SPDX properties, version the annotation schema.
 
 **Deliverable**: Cleaner, valid SPDX 3.0.1 export. No schema changes, no UI changes.
 

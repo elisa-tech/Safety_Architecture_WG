@@ -1,0 +1,3242 @@
+{
+  "@context": "https://spdx.org/rdf/3.0.1/spdx-context.jsonld",
+  "@graph": [
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:library:ut_spdx_library",
+      "subject": "spdx:file:basil:library:ut_spdx_library",
+      "statement": "{\"name\": \"ut_spdx_library\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:api:1",
+      "subject": "spdx:file:basil:api:1",
+      "statement": "{\"api\": \"ut_spdx_api#ad7fCDDC\", \"library\": \"ut_spdx_library\", \"library_version\": \"v1.0.0\", \"raw_specification_url\": \"/tmp/tmpbpne8pbl\", \"category\": \"ut_spdx_category\", \"checksum\": \"c6bbbADb\", \"default_view\": null, \"implementation_file\": \"/tmp/tmpbpne8pblimpl\", \"implementation_file_from_row\": 0, \"implementation_file_to_row\": 42, \"created_by\": \"ut_user_name\", \"edited_by\": \"ut_user_name\", \"last_coverage\": \"0\", \"tags\": \"spdx,validation,test\", \"version\": \"1\", \"srs_coverage\": 242.338, \"tss_coverage\": 164.76, \"tcs_coverage\": 91, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"apis\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:api:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:api:reference-document:1",
+      "subject": "spdx:file:basil:api:reference-document:1",
+      "statement": "{\"url\": \"/tmp/tmpbpne8pbl\", \"content\": \"\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:api:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:software-requirement:1:relation-id:1",
+      "subject": "spdx:snippet:api:1:1",
+      "statement": "{\"relation_id\": 1, \"direct\": true, \"created_by\": \"ut_user_name\", \"covered\": 95.0, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 0.0, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:1",
+      "subject": "spdx:file:basil:software-requirement:1",
+      "statement": "{\"description\": \"Software requirement for SPDX validation Authentication.\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"sw_requirements\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "review",
+      "spdxId": "spdx:annotation:basil:comment:1",
+      "subject": "spdx:file:basil:software-requirement:1",
+      "statement": "{\"id\": 1, \"comment\": \"SPDX export comment on API SW requirement mapping\", \"todo\": false, \"done\": false, \"done_by\": null, \"done_by_id\": null, \"done_at\": null, \"created_by\": \"ut_user_name\", \"created_by_id\": 4, \"created_at\": \"11 Sep 26 15:03\", \"updated_at\": \"11 Sep 26 15:03\", \"kind\": \"comment\", \"parent_table\": \"sw_requirement_mapping_api\", \"parent_id\": 1, \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:annotation:basil:comment:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-case:3",
+      "subject": "spdx:file:basil:test-case:3",
+      "statement": "{\"repository\": \"https://github.com/test/repo\", \"relative_path\": \"test/case.py\", \"description\": \"Test case for SPDX validation\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_cases\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-run:2",
+      "subject": "spdx:file:basil:test-run:2",
+      "statement": "{\"bugs\": \"https://bugs.example.com/spdx-1\", \"fixes\": \"https://fixes.example.com/spdx-1\", \"config\": {\"id\": 1, \"plugin\": \"tmt\", \"plugin_preset\": \"\", \"plugin_vars\": \"\", \"title\": \"SPDX Test Config #Ed8BaB0F\", \"git_repo_ref\": \"main\", \"context_vars\": \"\", \"ssh_key\": null, \"environment_vars\": \"\", \"provision_type\": \"container\", \"provision_guest\": \"\", \"provision_guest_port\": \"1234\", \"created_by\": \"ut_user_name\"}, \"created_by\": \"ut_user_name\", \"log\": null, \"notes\": \"Test run for SPDX validation\", \"report\": \"\", \"result\": null, \"status\": \"created\", \"uid\": \"55daed4d-89cd-4bf4-a9f1-de475b19856b\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_runs\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:3",
+      "subject": "spdx:file:basil:software-requirement:3",
+      "statement": "{\"description\": \"Software requirement for SPDX validation ErrorHandling.\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"sw_requirements\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "review",
+      "spdxId": "spdx:annotation:basil:comment:2",
+      "subject": "spdx:file:basil:software-requirement:3",
+      "statement": "{\"id\": 2, \"comment\": \"SPDX export comment on nested SW requirement mapping\", \"todo\": false, \"done\": false, \"done_by\": null, \"done_by_id\": null, \"done_at\": null, \"created_by\": \"ut_user_name\", \"created_by_id\": 4, \"created_at\": \"11 Sep 26 15:03\", \"updated_at\": \"11 Sep 26 15:03\", \"kind\": \"comment\", \"parent_table\": \"sw_requirement_mapping_sw_requirement\", \"parent_id\": 1, \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:annotation:basil:comment:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-specification:2",
+      "subject": "spdx:file:basil:test-specification:2",
+      "statement": "{\"preconditions\": \"System ready for testing\", \"test_description\": \"Comprehensive test description for SPDX validation\", \"expected_behavior\": \"Expected behavior for SPDX compliance\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_specifications\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-specification:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-case:5",
+      "subject": "spdx:file:basil:test-case:5",
+      "statement": "{\"repository\": \"https://github.com/test/repo\", \"relative_path\": \"test/case.py\", \"description\": \"Test case for SPDX validation\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_cases\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:5"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-run:6",
+      "subject": "spdx:file:basil:test-run:6",
+      "statement": "{\"bugs\": \"https://bugs.example.com/spdx-1\", \"fixes\": \"https://fixes.example.com/spdx-1\", \"config\": {\"id\": 1, \"plugin\": \"tmt\", \"plugin_preset\": \"\", \"plugin_vars\": \"\", \"title\": \"SPDX Test Config #Ed8BaB0F\", \"git_repo_ref\": \"main\", \"context_vars\": \"\", \"ssh_key\": null, \"environment_vars\": \"\", \"provision_type\": \"container\", \"provision_guest\": \"\", \"provision_guest_port\": \"1234\", \"created_by\": \"ut_user_name\"}, \"created_by\": \"ut_user_name\", \"log\": null, \"notes\": \"Test run for SPDX validation\", \"report\": \"\", \"result\": null, \"status\": \"created\", \"uid\": \"2bd0f46b-b23a-431b-905c-373910011b38\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_runs\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:6"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-case:6",
+      "subject": "spdx:file:basil:test-case:6",
+      "statement": "{\"repository\": \"https://github.com/test/repo\", \"relative_path\": \"test/case.py\", \"description\": \"Test case for SPDX validation\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_cases\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:6"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-run:5",
+      "subject": "spdx:file:basil:test-run:5",
+      "statement": "{\"bugs\": \"https://bugs.example.com/spdx-1\", \"fixes\": \"https://fixes.example.com/spdx-1\", \"config\": {\"id\": 1, \"plugin\": \"tmt\", \"plugin_preset\": \"\", \"plugin_vars\": \"\", \"title\": \"SPDX Test Config #Ed8BaB0F\", \"git_repo_ref\": \"main\", \"context_vars\": \"\", \"ssh_key\": null, \"environment_vars\": \"\", \"provision_type\": \"container\", \"provision_guest\": \"\", \"provision_guest_port\": \"1234\", \"created_by\": \"ut_user_name\"}, \"created_by\": \"ut_user_name\", \"log\": null, \"notes\": \"Test run for SPDX validation\", \"report\": \"\", \"result\": null, \"status\": \"created\", \"uid\": \"ae71a985-0337-4830-a9c7-795941ef999b\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_runs\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:5"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:4",
+      "subject": "spdx:file:basil:software-requirement:4",
+      "statement": "{\"description\": \"Software requirement for SPDX validation NestedNested.\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"sw_requirements\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:software-requirement:2:relation-id:3",
+      "subject": "spdx:snippet:api:1:2",
+      "statement": "{\"relation_id\": 3, \"direct\": true, \"created_by\": \"ut_user_name\", \"covered\": 67.338, \"__tablename__\": \"sw_requirement_mapping_api\", \"gap\": 22.662000000000006, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:software-requirement:2",
+      "subject": "spdx:file:basil:software-requirement:2",
+      "statement": "{\"description\": \"Software requirement for SPDX validation DataProcessing.\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"sw_requirements\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-specification:1",
+      "subject": "spdx:file:basil:test-specification:1",
+      "statement": "{\"preconditions\": \"System ready for testing\", \"test_description\": \"Comprehensive test description for SPDX validation\", \"expected_behavior\": \"Expected behavior for SPDX compliance\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_specifications\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-specification:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-case:4",
+      "subject": "spdx:file:basil:test-case:4",
+      "statement": "{\"repository\": \"https://github.com/test/repo\", \"relative_path\": \"test/case.py\", \"description\": \"Test case for SPDX validation\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_cases\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-run:4",
+      "subject": "spdx:file:basil:test-run:4",
+      "statement": "{\"bugs\": \"https://bugs.example.com/spdx-1\", \"fixes\": \"https://fixes.example.com/spdx-1\", \"config\": {\"id\": 1, \"plugin\": \"tmt\", \"plugin_preset\": \"\", \"plugin_vars\": \"\", \"title\": \"SPDX Test Config #Ed8BaB0F\", \"git_repo_ref\": \"main\", \"context_vars\": \"\", \"ssh_key\": null, \"environment_vars\": \"\", \"provision_type\": \"container\", \"provision_guest\": \"\", \"provision_guest_port\": \"1234\", \"created_by\": \"ut_user_name\"}, \"created_by\": \"ut_user_name\", \"log\": null, \"notes\": \"Test run for SPDX validation\", \"report\": \"\", \"result\": null, \"status\": \"created\", \"uid\": \"b05bd54f-a9d3-4df9-8b00-25d4fdb71e10\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_runs\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:test-specification:1:relation-id:1",
+      "subject": "spdx:snippet:api:1:3",
+      "statement": "{\"relation_id\": 1, \"covered\": 79.2, \"created_by\": \"ut_user_name\", \"__tablename__\": \"test_specification_mapping_api\", \"gap\": 8.799999999999997, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "review",
+      "spdxId": "spdx:annotation:basil:comment:3",
+      "subject": "spdx:file:basil:test-specification:1",
+      "statement": "{\"id\": 3, \"comment\": \"SPDX export comment on test specification mapping\", \"todo\": false, \"done\": false, \"done_by\": null, \"done_by_id\": null, \"done_at\": null, \"created_by\": \"ut_user_name\", \"created_by_id\": 4, \"created_at\": \"11 Sep 26 15:03\", \"updated_at\": \"11 Sep 26 15:03\", \"kind\": \"comment\", \"parent_table\": \"test_specification_mapping_api\", \"parent_id\": 1, \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:annotation:basil:comment:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-case:1",
+      "subject": "spdx:file:basil:test-case:1",
+      "statement": "{\"repository\": \"https://github.com/test/repo\", \"relative_path\": \"test/case.py\", \"description\": \"Test case for SPDX validation\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_cases\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-run:1",
+      "subject": "spdx:file:basil:test-run:1",
+      "statement": "{\"bugs\": \"https://bugs.example.com/spdx-1\", \"fixes\": \"https://fixes.example.com/spdx-1\", \"config\": {\"id\": 1, \"plugin\": \"tmt\", \"plugin_preset\": \"\", \"plugin_vars\": \"\", \"title\": \"SPDX Test Config #Ed8BaB0F\", \"git_repo_ref\": \"main\", \"context_vars\": \"\", \"ssh_key\": null, \"environment_vars\": \"\", \"provision_type\": \"container\", \"provision_guest\": \"\", \"provision_guest_port\": \"1234\", \"created_by\": \"ut_user_name\"}, \"created_by\": \"ut_user_name\", \"log\": null, \"notes\": \"Test run for SPDX validation\", \"report\": \"\", \"result\": null, \"status\": \"created\", \"uid\": \"6247c938-b1fa-4d78-be62-d950b9b2dc34\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_runs\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:test-specification:2:relation-id:2",
+      "subject": "spdx:snippet:api:1:4",
+      "statement": "{\"relation_id\": 2, \"covered\": 85.56, \"created_by\": \"ut_user_name\", \"__tablename__\": \"test_specification_mapping_api\", \"gap\": 6.439999999999998, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-case:2",
+      "subject": "spdx:file:basil:test-case:2",
+      "statement": "{\"repository\": \"https://github.com/test/repo\", \"relative_path\": \"test/case.py\", \"description\": \"Test case for SPDX validation\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_cases\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:test-case:1:relation-id:1",
+      "subject": "spdx:snippet:api:1:5",
+      "statement": "{\"relation_id\": 1, \"covered\": 91, \"created_by\": \"ut_user_name\", \"__tablename__\": \"test_case_mapping_api\", \"gap\": 0, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:5"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "review",
+      "spdxId": "spdx:annotation:basil:comment:4",
+      "subject": "spdx:file:basil:test-case:1",
+      "statement": "{\"id\": 4, \"comment\": \"SPDX export TODO on test case mapping\", \"todo\": true, \"done\": false, \"done_by\": null, \"done_by_id\": null, \"done_at\": null, \"created_by\": \"ut_user_name\", \"created_by_id\": 4, \"created_at\": \"11 Sep 26 15:03\", \"updated_at\": \"11 Sep 26 15:03\", \"kind\": \"comment\", \"parent_table\": \"test_case_mapping_api\", \"parent_id\": 1, \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:annotation:basil:comment:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:test-run:3",
+      "subject": "spdx:file:basil:test-run:3",
+      "statement": "{\"bugs\": \"https://bugs.example.com/spdx-1\", \"fixes\": \"https://fixes.example.com/spdx-1\", \"config\": {\"id\": 1, \"plugin\": \"tmt\", \"plugin_preset\": \"\", \"plugin_vars\": \"\", \"title\": \"SPDX Test Config #Ed8BaB0F\", \"git_repo_ref\": \"main\", \"context_vars\": \"\", \"ssh_key\": null, \"environment_vars\": \"\", \"provision_type\": \"container\", \"provision_guest\": \"\", \"provision_guest_port\": \"1234\", \"created_by\": \"ut_user_name\"}, \"created_by\": \"ut_user_name\", \"log\": null, \"notes\": \"Test run for SPDX validation\", \"report\": \"\", \"result\": null, \"status\": \"created\", \"uid\": \"9301f8a0-14c4-481f-8bfc-84c13c8231b6\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"test_runs\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:document:1:relation-id:1",
+      "subject": "spdx:snippet:api:1:6",
+      "statement": "{\"relation_id\": 1, \"covered\": 54.32, \"created_by\": \"ut_user_name\", \"__tablename__\": \"document_mapping_api\", \"gap\": 42.68, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:6"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:1",
+      "subject": "spdx:file:basil:document:1",
+      "statement": "{\"document_type\": \"file\", \"description\": \"Reference documentation for SPDX compliance\", \"spdx_relation\": \"describes\", \"url\": \"https://spdx.dev/specification\", \"offset\": 0, \"section\": \"Document section\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"documents\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "review",
+      "spdxId": "spdx:annotation:basil:comment:5",
+      "subject": "spdx:file:basil:document:1",
+      "statement": "{\"id\": 5, \"comment\": \"SPDX export comment on document mapping\", \"todo\": false, \"done\": false, \"done_by\": null, \"done_by_id\": null, \"done_at\": null, \"created_by\": \"ut_user_name\", \"created_by_id\": 4, \"created_at\": \"11 Sep 26 15:03\", \"updated_at\": \"11 Sep 26 15:03\", \"kind\": \"comment\", \"parent_table\": \"document_mapping_api\", \"parent_id\": 1, \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:annotation:basil:comment:5"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:3",
+      "subject": "spdx:file:basil:document:3",
+      "statement": "{\"document_type\": \"file\", \"description\": \"Reference documentation for SPDX compliance\", \"spdx_relation\": \"describes\", \"url\": \"https://spdx.dev/specification\", \"offset\": 0, \"section\": \"Document section\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"documents\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:3"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:4",
+      "subject": "spdx:file:basil:document:4",
+      "statement": "{\"document_type\": \"file\", \"description\": \"Reference documentation for SPDX compliance\", \"spdx_relation\": \"describes\", \"url\": \"https://spdx.dev/specification\", \"offset\": 0, \"section\": \"Document section\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"documents\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:4"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:document:2:relation-id:2",
+      "subject": "spdx:snippet:api:1:7",
+      "statement": "{\"relation_id\": 2, \"covered\": 98, \"created_by\": \"ut_user_name\", \"__tablename__\": \"document_mapping_api\", \"gap\": 0, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:7"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:document:2",
+      "subject": "spdx:file:basil:document:2",
+      "statement": "{\"document_type\": \"file\", \"description\": \"Reference documentation for SPDX compliance\", \"spdx_relation\": \"describes\", \"url\": \"https://spdx.dev/specification\", \"offset\": 0, \"section\": \"Document section\", \"status\": \"NEW\", \"valid\": 0, \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"documents\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:document:2"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:justification:1:relation-id:1",
+      "subject": "spdx:snippet:api:1:8",
+      "statement": "{\"relation_id\": 1, \"covered\": 94, \"created_by\": \"ut_user_name\", \"__tablename__\": \"justification_mapping_api\", \"gap\": 0, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:8"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:justification:1",
+      "subject": "spdx:file:basil:justification:1",
+      "statement": "{\"description\": \"Justification for SPDX test requirements Compliance#7F5dE2fF\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"justifications\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:justification:1"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "review",
+      "spdxId": "spdx:annotation:basil:comment:6",
+      "subject": "spdx:file:basil:justification:1",
+      "statement": "{\"id\": 6, \"comment\": \"SPDX export comment on justification mapping\", \"todo\": false, \"done\": false, \"done_by\": null, \"done_by_id\": null, \"done_at\": null, \"created_by\": \"ut_user_name\", \"created_by_id\": 4, \"created_at\": \"11 Sep 26 15:03\", \"updated_at\": \"11 Sep 26 15:03\", \"kind\": \"comment\", \"parent_table\": \"justification_mapping_api\", \"parent_id\": 1, \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:annotation:basil:comment:6"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:snippet:api:1:justification:2:relation-id:2",
+      "subject": "spdx:snippet:api:1:9",
+      "statement": "{\"relation_id\": 2, \"covered\": 96, \"created_by\": \"ut_user_name\", \"__tablename__\": \"justification_mapping_api\", \"gap\": 0, \"version\": \"1.1\", \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:9"
+    },
+    {
+      "type": "Annotation",
+      "annotationType": "other",
+      "spdxId": "spdx:annotation:basil:justification:2",
+      "subject": "spdx:file:basil:justification:2",
+      "statement": "{\"description\": \"Justification for SPDX test requirements Performance#563281A8\", \"status\": \"NEW\", \"created_by\": \"ut_user_name\", \"version\": \"1\", \"used\": true, \"created_at\": \"2026-09-11 15:03\", \"updated_at\": \"2026-09-11 15:03\", \"__tablename__\": \"justifications\", \"basil:annotationVersion\": \"2.0\"}",
+      "creationInfo": "_:creation_info_spdx:file:basil:justification:2"
+    },
+    {
+      "@id": "_:sbom_creation_info",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:api:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:annotation:basil:comment:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-case:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-run:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:annotation:basil:comment:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-specification:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-case:5",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-run:6",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-case:6",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-run:5",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:software-requirement:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-specification:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-case:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-run:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:annotation:basil:comment:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-case:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-run:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-case:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:5",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:annotation:basil:comment:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:test-run:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:6",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:annotation:basil:comment:5",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:3",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:4",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:7",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:document:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:8",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:justification:1",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:annotation:basil:comment:6",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:snippet:api:1:9",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "@id": "_:creation_info_spdx:file:basil:justification:2",
+      "type": "CreationInfo",
+      "specVersion": "3.0.1",
+      "createdBy": [
+        "spdx:person:basil:user:4"
+      ],
+      "createdUsing": [
+        "https://github.com/elisa-tech/BASIL"
+      ],
+      "created": "2026-09-11T15:03:01Z"
+    },
+    {
+      "type": "Person",
+      "spdxId": "spdx:person:basil:user:4",
+      "name": "ut_user_name",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:1",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:api:reference-document:1"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:2",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:api:reference-document:1"
+      ],
+      "relationshipType": "hasSpecification",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:3",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:4",
+      "from": "spdx:snippet:api:1:1",
+      "to": [
+        "spdx:file:basil:software-requirement:1"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:5",
+      "from": "spdx:file:basil:software-requirement:1",
+      "to": [
+        "spdx:file:basil:test-case:3"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:6",
+      "from": "spdx:file:basil:test-case:3",
+      "to": [
+        "spdx:file:basil:test-run:2"
+      ],
+      "relationshipType": "generates",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:7",
+      "from": "spdx:file:basil:test-case:3",
+      "to": [
+        "spdx:file:basil:test-run:2"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:8",
+      "from": "spdx:file:basil:test-case:3",
+      "to": [
+        "spdx:file:basil:test-run:2"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:9",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:test-run:2"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:10",
+      "from": "spdx:file:basil:test-run:2",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "testedOn",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:11",
+      "from": "spdx:file:basil:test-run:2",
+      "to": [
+        "spdx:file:basil:test-run:2:bug:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:12",
+      "from": "spdx:file:basil:test-run:2",
+      "to": [
+        "spdx:file:basil:test-run:2:fix:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:13",
+      "from": "spdx:file:basil:test-run:2",
+      "to": [
+        "spdx:file:basil:test-run:2:artifact:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:14",
+      "from": "spdx:file:basil:test-run:2",
+      "to": [
+        "spdx:file:basil:test-run:2:artifact:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:15",
+      "from": "spdx:file:basil:software-requirement:1",
+      "to": [
+        "spdx:file:basil:software-requirement:3"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:16",
+      "from": "spdx:file:basil:software-requirement:1",
+      "to": [
+        "spdx:file:basil:software-requirement:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:17",
+      "from": "spdx:file:basil:software-requirement:3",
+      "to": [
+        "spdx:file:basil:test-specification:2"
+      ],
+      "relationshipType": "hasSpecification",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:18",
+      "from": "spdx:file:basil:test-specification:2",
+      "to": [
+        "spdx:file:basil:test-case:5"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:19",
+      "from": "spdx:file:basil:test-case:5",
+      "to": [
+        "spdx:file:basil:test-run:6"
+      ],
+      "relationshipType": "generates",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:20",
+      "from": "spdx:file:basil:test-case:5",
+      "to": [
+        "spdx:file:basil:test-run:6"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:21",
+      "from": "spdx:file:basil:test-case:5",
+      "to": [
+        "spdx:file:basil:test-run:6"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:22",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:test-run:6"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:23",
+      "from": "spdx:file:basil:test-run:6",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "testedOn",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:24",
+      "from": "spdx:file:basil:test-run:6",
+      "to": [
+        "spdx:file:basil:test-run:6:bug:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:25",
+      "from": "spdx:file:basil:test-run:6",
+      "to": [
+        "spdx:file:basil:test-run:6:fix:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:26",
+      "from": "spdx:file:basil:test-run:6",
+      "to": [
+        "spdx:file:basil:test-run:6:artifact:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:27",
+      "from": "spdx:file:basil:test-run:6",
+      "to": [
+        "spdx:file:basil:test-run:6:artifact:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:28",
+      "from": "spdx:file:basil:software-requirement:3",
+      "to": [
+        "spdx:file:basil:test-case:6"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:29",
+      "from": "spdx:file:basil:test-case:6",
+      "to": [
+        "spdx:file:basil:test-run:5"
+      ],
+      "relationshipType": "generates",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:30",
+      "from": "spdx:file:basil:test-case:6",
+      "to": [
+        "spdx:file:basil:test-run:5"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:31",
+      "from": "spdx:file:basil:test-case:6",
+      "to": [
+        "spdx:file:basil:test-run:5"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:32",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:test-run:5"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:33",
+      "from": "spdx:file:basil:test-run:5",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "testedOn",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:34",
+      "from": "spdx:file:basil:test-run:5",
+      "to": [
+        "spdx:file:basil:test-run:5:bug:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:35",
+      "from": "spdx:file:basil:test-run:5",
+      "to": [
+        "spdx:file:basil:test-run:5:fix:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:36",
+      "from": "spdx:file:basil:test-run:5",
+      "to": [
+        "spdx:file:basil:test-run:5:artifact:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:37",
+      "from": "spdx:file:basil:test-run:5",
+      "to": [
+        "spdx:file:basil:test-run:5:artifact:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:38",
+      "from": "spdx:file:basil:software-requirement:3",
+      "to": [
+        "spdx:file:basil:software-requirement:4"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:39",
+      "from": "spdx:file:basil:software-requirement:3",
+      "to": [
+        "spdx:file:basil:software-requirement:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:40",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:41",
+      "from": "spdx:snippet:api:1:1",
+      "to": [
+        "spdx:file:basil:software-requirement:3"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:42",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:2"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:43",
+      "from": "spdx:snippet:api:1:2",
+      "to": [
+        "spdx:file:basil:software-requirement:2"
+      ],
+      "relationshipType": "hasRequirement",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:44",
+      "from": "spdx:file:basil:software-requirement:2",
+      "to": [
+        "spdx:file:basil:test-specification:1"
+      ],
+      "relationshipType": "hasSpecification",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:45",
+      "from": "spdx:file:basil:test-specification:1",
+      "to": [
+        "spdx:file:basil:test-case:4"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:46",
+      "from": "spdx:file:basil:test-case:4",
+      "to": [
+        "spdx:file:basil:test-run:4"
+      ],
+      "relationshipType": "generates",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:47",
+      "from": "spdx:file:basil:test-case:4",
+      "to": [
+        "spdx:file:basil:test-run:4"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:48",
+      "from": "spdx:file:basil:test-case:4",
+      "to": [
+        "spdx:file:basil:test-run:4"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:49",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:test-run:4"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:50",
+      "from": "spdx:file:basil:test-run:4",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "testedOn",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:51",
+      "from": "spdx:file:basil:test-run:4",
+      "to": [
+        "spdx:file:basil:test-run:4:bug:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:52",
+      "from": "spdx:file:basil:test-run:4",
+      "to": [
+        "spdx:file:basil:test-run:4:fix:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:53",
+      "from": "spdx:file:basil:test-run:4",
+      "to": [
+        "spdx:file:basil:test-run:4:artifact:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:54",
+      "from": "spdx:file:basil:test-run:4",
+      "to": [
+        "spdx:file:basil:test-run:4:artifact:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:55",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:56",
+      "from": "spdx:snippet:api:1:3",
+      "to": [
+        "spdx:file:basil:test-specification:1"
+      ],
+      "relationshipType": "hasSpecification",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:57",
+      "from": "spdx:file:basil:test-specification:1",
+      "to": [
+        "spdx:file:basil:test-case:1"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:58",
+      "from": "spdx:file:basil:test-case:1",
+      "to": [
+        "spdx:file:basil:test-run:1"
+      ],
+      "relationshipType": "generates",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:59",
+      "from": "spdx:file:basil:test-case:1",
+      "to": [
+        "spdx:file:basil:test-run:1"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:60",
+      "from": "spdx:file:basil:test-case:1",
+      "to": [
+        "spdx:file:basil:test-run:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:61",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:test-run:1"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:62",
+      "from": "spdx:file:basil:test-run:1",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "testedOn",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:63",
+      "from": "spdx:file:basil:test-run:1",
+      "to": [
+        "spdx:file:basil:test-run:1:bug:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:64",
+      "from": "spdx:file:basil:test-run:1",
+      "to": [
+        "spdx:file:basil:test-run:1:fix:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:65",
+      "from": "spdx:file:basil:test-run:1",
+      "to": [
+        "spdx:file:basil:test-run:1:artifact:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:66",
+      "from": "spdx:file:basil:test-run:1",
+      "to": [
+        "spdx:file:basil:test-run:1:artifact:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:67",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:68",
+      "from": "spdx:snippet:api:1:4",
+      "to": [
+        "spdx:file:basil:test-specification:2"
+      ],
+      "relationshipType": "hasSpecification",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:69",
+      "from": "spdx:file:basil:test-specification:2",
+      "to": [
+        "spdx:file:basil:test-case:2"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:70",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:5"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:71",
+      "from": "spdx:snippet:api:1:5",
+      "to": [
+        "spdx:file:basil:test-case:1"
+      ],
+      "relationshipType": "hasTestCase",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:72",
+      "from": "spdx:file:basil:test-case:1",
+      "to": [
+        "spdx:file:basil:test-run:3"
+      ],
+      "relationshipType": "generates",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:73",
+      "from": "spdx:file:basil:test-case:1",
+      "to": [
+        "spdx:file:basil:test-run:3"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:74",
+      "from": "spdx:file:basil:test-case:1",
+      "to": [
+        "spdx:file:basil:test-run:3"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:75",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:file:basil:test-run:3"
+      ],
+      "relationshipType": "hasTest",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:76",
+      "from": "spdx:file:basil:test-run:3",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "testedOn",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:77",
+      "from": "spdx:file:basil:test-run:3",
+      "to": [
+        "spdx:file:basil:test-run:3:bug:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:78",
+      "from": "spdx:file:basil:test-run:3",
+      "to": [
+        "spdx:file:basil:test-run:3:fix:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:79",
+      "from": "spdx:file:basil:test-run:3",
+      "to": [
+        "spdx:file:basil:test-run:3:artifact:1"
+      ],
+      "relationshipType": "hasOutput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:80",
+      "from": "spdx:file:basil:test-run:3",
+      "to": [
+        "spdx:file:basil:test-run:3:artifact:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:81",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:6"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:82",
+      "from": "spdx:snippet:api:1:6",
+      "to": [
+        "spdx:file:basil:document:1"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:83",
+      "from": "spdx:file:basil:document:1",
+      "to": [
+        "spdx:file:basil:document:3"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:84",
+      "from": "spdx:file:basil:document:1",
+      "to": [
+        "spdx:file:basil:document:3"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:85",
+      "from": "spdx:file:basil:document:3",
+      "to": [
+        "spdx:file:basil:document:4"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:86",
+      "from": "spdx:file:basil:document:3",
+      "to": [
+        "spdx:file:basil:document:4"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:87",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:7"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:88",
+      "from": "spdx:snippet:api:1:7",
+      "to": [
+        "spdx:file:basil:document:2"
+      ],
+      "relationshipType": "hasDocumentation",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:89",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:8"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:90",
+      "from": "spdx:snippet:api:1:8",
+      "to": [
+        "spdx:file:basil:justification:1"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:91",
+      "from": "spdx:file:basil:api:1",
+      "to": [
+        "spdx:snippet:api:1:9"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:92",
+      "from": "spdx:snippet:api:1:9",
+      "to": [
+        "spdx:file:basil:justification:2"
+      ],
+      "relationshipType": "hasEvidence",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:93",
+      "from": "spdx:file:basil:library:ut_spdx_library",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "contains",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:94",
+      "from": "spdx:file:basil:library:ut_spdx_library",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "hasInput",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:95",
+      "from": "spdx:file:basil:library:ut_spdx_library",
+      "to": [
+        "spdx:file:basil:api:1"
+      ],
+      "relationshipType": "hasSpecification",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "Relationship",
+      "spdxId": "spdx:relationship:96",
+      "from": "spdx:document:basil:export:ut_spdx_library",
+      "to": [
+        "spdx:sbom:basil:export:ut_spdx_library"
+      ],
+      "relationshipType": "describes",
+      "completeness": "incomplete",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "SpdxDocument",
+      "spdxId": "spdx:document:basil:export:ut_spdx_library",
+      "dataLicense": "spdx:license:ut_spdx_library",
+      "rootElement": [
+        "spdx:sbom:basil:export:ut_spdx_library"
+      ],
+      "name": "BASIL SBOM export for library ut_spdx_library",
+      "creationInfo": "_:sbom_creation_info",
+      "profileConformance": [
+        "core",
+        "software"
+      ],
+      "signature": {
+        "algorithm": "HS256",
+        "value": "AavVH7IpP-87JXssP2aE9S6itIcLxrw0eLPI9du6TPw"
+      }
+    },
+    {
+      "type": "Tool",
+      "spdxId": "https://github.com/elisa-tech/BASIL",
+      "name": "BASIL 1.8.12",
+      "creationInfo": "_:sbom_creation_info",
+      "description": "BASIL SPDX 3.0.1 exporter",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "packageUrl",
+          "identifier": "pkg:github/elisa-tech/BASIL@1.8.12",
+          "comment": "BASIL version 1.8.12",
+          "identifierLocator": [
+            "https://github.com/elisa-tech/BASIL"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "simplelicensing_LicenseExpression",
+      "spdxId": "spdx:license:ut_spdx_library",
+      "simplelicensing_licenseExpression": "NOASSERTION",
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:library:ut_spdx_library",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "library",
+      "name": "Library ut_spdx_library",
+      "comment": "BASIL Library ut_spdx_library",
+      "description": "BASIL Library ut_spdx_library",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "9e29530b509c8156eff371bfa9f031b8"
+        }
+      ],
+      "creationInfo": "_:sbom_creation_info"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:api:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "module",
+      "name": "ut_spdx_api#ad7fCDDC",
+      "comment": "BASIL Software Component id 1",
+      "description": "BASIL Software Component id 1",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "76b7d516936baa6207cab569234facbc"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:api:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:apis:1",
+          "comment": "BASIL Software Component 'ut_spdx_api#ad7fCDDC' with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:api:reference-document:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "specification",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "BASIL Reference Document for Software Component ut_spdx_api#ad7fCDDC",
+      "description": "BASIL Reference Document for Software Component ut_spdx_api#ad7fCDDC of library ut_spdx_library",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "e4e15b693b01382ffaaa26e44fe225ec"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:api:1"
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "SPDX SW req Authentication#07F21B77",
+      "comment": "BASIL Software Requirement ID 1",
+      "description": "Software requirement for SPDX validation Authentication.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "c7e1820a56aaaeba4dd9a92b0931e609"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:sw_requirements:1",
+          "comment": "BASIL Software Requirement 'SPDX SW req Authentication#07F21B77' with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-case:3",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "test",
+      "name": "UT SPDX Test Case ErrorTest#89E6Dd00",
+      "comment": "BASIL Test Case ID 3",
+      "description": "Test case for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "38bf8f188dc5b7027981d263a4c54e04"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_cases:3",
+          "comment": "BASIL Test Case 'UT SPDX Test Case ErrorTest#89E6Dd00' with ID 3"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:2",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "SPDX Test Run #5fB2A1bE",
+      "comment": "BASIL Test Run ID 2",
+      "description": "Test run for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "8a2cebbc43b304be948c2de2d633acaf"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:2",
+          "comment": "BASIL Test Run 'SPDX Test Run #5fB2A1bE' with ID 2"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:2:bug:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "other",
+      "name": "https://bugs.example.com/spdx-1",
+      "comment": "BASIL Bug",
+      "description": "Bug linked from BASIL Test Run 2",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "01e0c78e96f192dfcc05bf3b4d28355e"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://bugs.example.com/spdx-1",
+          "comment": "BASIL Test Run 2 Bug",
+          "identifierLocator": [
+            "https://bugs.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:2:fix:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "patch",
+      "name": "https://fixes.example.com/spdx-1",
+      "comment": "BASIL Fix",
+      "description": "Fix linked from BASIL Test Run 2",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "10572eaf37bd7f8d1ad9a37e8391c28e"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://fixes.example.com/spdx-1",
+          "comment": "BASIL Test Run 2 Fix",
+          "identifierLocator": [
+            "https://fixes.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:2:artifact:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "spdx-artifact.log",
+      "comment": "BASIL Artifact",
+      "description": "Artifact 'spdx-artifact.log' from BASIL Test Run 2",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "a2b5a78d088170d3ea037040eb68abfb"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:2:artifact:spdx-artifact.log",
+          "comment": "BASIL Test Run 2 Artifact 'spdx-artifact.log'"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:3",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "SPDX SW req ErrorHandling#339d8bf7",
+      "comment": "BASIL Software Requirement ID 3",
+      "description": "Software requirement for SPDX validation ErrorHandling.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "1d0f91ea663f5c26680c1e00e6340de7"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:sw_requirements:3",
+          "comment": "BASIL Software Requirement 'SPDX SW req ErrorHandling#339d8bf7' with ID 3"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-specification:2",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "specification",
+      "name": "UT SPDX Test Specification Data#BEC44dBd",
+      "comment": "BASIL Test Specification ID 2",
+      "description": "Comprehensive test description for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "9dba5a9abc424fe7aeab66b19542165b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-specification:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_specifications:2",
+          "comment": "BASIL Test Specification 'UT SPDX Test Specification Data#BEC44dBd' with ID 2"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-case:5",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "test",
+      "name": "UT SPDX Test Case SrSrTsTc#cAc68Bab",
+      "comment": "BASIL Test Case ID 5",
+      "description": "Test case for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "1b50ceb5b3e002e75133eb93e5b93b66"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:5",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_cases:5",
+          "comment": "BASIL Test Case 'UT SPDX Test Case SrSrTsTc#cAc68Bab' with ID 5"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:6",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "SPDX Test Run #688BFd4F",
+      "comment": "BASIL Test Run ID 6",
+      "description": "Test run for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "35032ece5caf217870b3e42bfa11b626"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:6",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:6",
+          "comment": "BASIL Test Run 'SPDX Test Run #688BFd4F' with ID 6"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:6:bug:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "other",
+      "name": "https://bugs.example.com/spdx-1",
+      "comment": "BASIL Bug",
+      "description": "Bug linked from BASIL Test Run 6",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "42dde2034f9f99391bed7a76e282e6aa"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:6",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://bugs.example.com/spdx-1",
+          "comment": "BASIL Test Run 6 Bug",
+          "identifierLocator": [
+            "https://bugs.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:6:fix:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "patch",
+      "name": "https://fixes.example.com/spdx-1",
+      "comment": "BASIL Fix",
+      "description": "Fix linked from BASIL Test Run 6",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "decf53d149bccde713a232d98e7aa067"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:6",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://fixes.example.com/spdx-1",
+          "comment": "BASIL Test Run 6 Fix",
+          "identifierLocator": [
+            "https://fixes.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:6:artifact:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "spdx-artifact.log",
+      "comment": "BASIL Artifact",
+      "description": "Artifact 'spdx-artifact.log' from BASIL Test Run 6",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "25d09978c7e09d9a393082f47e154f1b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:6",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:6:artifact:spdx-artifact.log",
+          "comment": "BASIL Test Run 6 Artifact 'spdx-artifact.log'"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-case:6",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "test",
+      "name": "UT SPDX Test Case SrSrTc#2CbAa916",
+      "comment": "BASIL Test Case ID 6",
+      "description": "Test case for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "fe30ba648fbec46d6478129ccf9d6c21"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:6",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_cases:6",
+          "comment": "BASIL Test Case 'UT SPDX Test Case SrSrTc#2CbAa916' with ID 6"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:5",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "SPDX Test Run #70bDf5ba",
+      "comment": "BASIL Test Run ID 5",
+      "description": "Test run for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "7ecb373246d0f5b74c61b8cfae54ab85"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:5",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:5",
+          "comment": "BASIL Test Run 'SPDX Test Run #70bDf5ba' with ID 5"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:5:bug:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "other",
+      "name": "https://bugs.example.com/spdx-1",
+      "comment": "BASIL Bug",
+      "description": "Bug linked from BASIL Test Run 5",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "a58d9bb7b1dd579c84725c114f08fc02"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:5",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://bugs.example.com/spdx-1",
+          "comment": "BASIL Test Run 5 Bug",
+          "identifierLocator": [
+            "https://bugs.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:5:fix:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "patch",
+      "name": "https://fixes.example.com/spdx-1",
+      "comment": "BASIL Fix",
+      "description": "Fix linked from BASIL Test Run 5",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "930e8c80eeb1ced2befee861a97f28aa"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:5",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://fixes.example.com/spdx-1",
+          "comment": "BASIL Test Run 5 Fix",
+          "identifierLocator": [
+            "https://fixes.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:5:artifact:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "spdx-artifact.log",
+      "comment": "BASIL Artifact",
+      "description": "Artifact 'spdx-artifact.log' from BASIL Test Run 5",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "862c499adade1ce68fc97ef551f7d66b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:5",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:5:artifact:spdx-artifact.log",
+          "comment": "BASIL Test Run 5 Artifact 'spdx-artifact.log'"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:4",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "SPDX SW req NestedNested#BCf85afb",
+      "comment": "BASIL Software Requirement ID 4",
+      "description": "Software requirement for SPDX validation NestedNested.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "a86ec67cdc4e70872e44de827bbf4da1"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:sw_requirements:4",
+          "comment": "BASIL Software Requirement 'SPDX SW req NestedNested#BCf85afb' with ID 4"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:software-requirement:2",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "requirement",
+      "name": "SPDX SW req DataProcessing#9Ae972E6",
+      "comment": "BASIL Software Requirement ID 2",
+      "description": "Software requirement for SPDX validation DataProcessing.",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "6d3ba066bb48b068c2b11c9c43fb07e2"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:software-requirement:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:sw_requirements:2",
+          "comment": "BASIL Software Requirement 'SPDX SW req DataProcessing#9Ae972E6' with ID 2"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-specification:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "specification",
+      "name": "UT SPDX Test Specification Auth#2fDCF5B0",
+      "comment": "BASIL Test Specification ID 1",
+      "description": "Comprehensive test description for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "9c68a197d496258aa84bb8155df6f3d5"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-specification:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_specifications:1",
+          "comment": "BASIL Test Specification 'UT SPDX Test Specification Auth#2fDCF5B0' with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-case:4",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "test",
+      "name": "UT SPDX Test Case SrTsTc#5b4b50fa",
+      "comment": "BASIL Test Case ID 4",
+      "description": "Test case for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "2bc6f03fcda61d410332ae5f81772927"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_cases:4",
+          "comment": "BASIL Test Case 'UT SPDX Test Case SrTsTc#5b4b50fa' with ID 4"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:4",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "SPDX Test Run #82FEc872",
+      "comment": "BASIL Test Run ID 4",
+      "description": "Test run for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "7f62b00fc14411f82f0bb8d5b184c271"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:4",
+          "comment": "BASIL Test Run 'SPDX Test Run #82FEc872' with ID 4"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:4:bug:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "other",
+      "name": "https://bugs.example.com/spdx-1",
+      "comment": "BASIL Bug",
+      "description": "Bug linked from BASIL Test Run 4",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "3e6faabed7de7953d09834d01f9bfa85"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://bugs.example.com/spdx-1",
+          "comment": "BASIL Test Run 4 Bug",
+          "identifierLocator": [
+            "https://bugs.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:4:fix:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "patch",
+      "name": "https://fixes.example.com/spdx-1",
+      "comment": "BASIL Fix",
+      "description": "Fix linked from BASIL Test Run 4",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "e594a9694ee5fd2ca4dee01ac8446594"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://fixes.example.com/spdx-1",
+          "comment": "BASIL Test Run 4 Fix",
+          "identifierLocator": [
+            "https://fixes.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:4:artifact:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "spdx-artifact.log",
+      "comment": "BASIL Artifact",
+      "description": "Artifact 'spdx-artifact.log' from BASIL Test Run 4",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "af5b21e40920d551d92e40b1e3867e18"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:4:artifact:spdx-artifact.log",
+          "comment": "BASIL Test Run 4 Artifact 'spdx-artifact.log'"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-case:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "test",
+      "name": "UT SPDX Test Case AuthTest#Ff34ACFf",
+      "comment": "BASIL Test Case ID 1",
+      "description": "Test case for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "cdbec8ca4b50f1751242c1ddaa094dde"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_cases:1",
+          "comment": "BASIL Test Case 'UT SPDX Test Case AuthTest#Ff34ACFf' with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "SPDX Test Run #B8F56FFa",
+      "comment": "BASIL Test Run ID 1",
+      "description": "Test run for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "d3bfd86121525ab62e71440919f280fd"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:1",
+          "comment": "BASIL Test Run 'SPDX Test Run #B8F56FFa' with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:1:bug:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "other",
+      "name": "https://bugs.example.com/spdx-1",
+      "comment": "BASIL Bug",
+      "description": "Bug linked from BASIL Test Run 1",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "59a22c2761191d796fa638be6157c61b"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://bugs.example.com/spdx-1",
+          "comment": "BASIL Test Run 1 Bug",
+          "identifierLocator": [
+            "https://bugs.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:1:fix:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "patch",
+      "name": "https://fixes.example.com/spdx-1",
+      "comment": "BASIL Fix",
+      "description": "Fix linked from BASIL Test Run 1",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "6f31f27920c1de794e331ee302d19de5"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://fixes.example.com/spdx-1",
+          "comment": "BASIL Test Run 1 Fix",
+          "identifierLocator": [
+            "https://fixes.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:1:artifact:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "spdx-artifact.log",
+      "comment": "BASIL Artifact",
+      "description": "Artifact 'spdx-artifact.log' from BASIL Test Run 1",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "7d4f8d651d996c9be10f4850a71227e0"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:1:artifact:spdx-artifact.log",
+          "comment": "BASIL Test Run 1 Artifact 'spdx-artifact.log'"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-case:2",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "test",
+      "name": "UT SPDX Test Case DataTest#9abbBAC8",
+      "comment": "BASIL Test Case ID 2",
+      "description": "Test case for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "06c64a6c3d35818481ba96af5eb8fe72"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-case:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_cases:2",
+          "comment": "BASIL Test Case 'UT SPDX Test Case DataTest#9abbBAC8' with ID 2"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:3",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "SPDX Test Run #6Fb9Dcd7",
+      "comment": "BASIL Test Run ID 3",
+      "description": "Test run for SPDX validation",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "d1dccd81307ccba1d6bf5d585c1b71be"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:3",
+          "comment": "BASIL Test Run 'SPDX Test Run #6Fb9Dcd7' with ID 3"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:3:bug:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "other",
+      "name": "https://bugs.example.com/spdx-1",
+      "comment": "BASIL Bug",
+      "description": "Bug linked from BASIL Test Run 3",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "6cbe961f956f699b4861ef18ee1abc88"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://bugs.example.com/spdx-1",
+          "comment": "BASIL Test Run 3 Bug",
+          "identifierLocator": [
+            "https://bugs.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:3:fix:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "patch",
+      "name": "https://fixes.example.com/spdx-1",
+      "comment": "BASIL Fix",
+      "description": "Fix linked from BASIL Test Run 3",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "2a3d18c1a350f103e5d4820e4ffe9aa3"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "https://fixes.example.com/spdx-1",
+          "comment": "BASIL Test Run 3 Fix",
+          "identifierLocator": [
+            "https://fixes.example.com/spdx-1"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:test-run:3:artifact:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "spdx-artifact.log",
+      "comment": "BASIL Artifact",
+      "description": "Artifact 'spdx-artifact.log' from BASIL Test Run 3",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "a0bc108352f592e0e67cd3058631c957"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:test-run:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:test_runs:3:artifact:spdx-artifact.log",
+          "comment": "BASIL Test Run 3 Artifact 'spdx-artifact.log'"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "SPDX Reference Document AuthDoc#94c8EfB8",
+      "comment": "BASIL Document ID 1",
+      "description": "Reference documentation for SPDX compliance",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "cdd0f8ae4f3ae2c6192fd5b1d2617e08"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:documents:1",
+          "comment": "BASIL Document 'SPDX Reference Document AuthDoc#94c8EfB8' with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:3",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "SPDX Reference Document NestedDoc#5d6e0Bb8",
+      "comment": "BASIL Document ID 3",
+      "description": "Reference documentation for SPDX compliance",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "98a49d0d0333f38189ee12a6dcf9f66f"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:3",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:documents:3",
+          "comment": "BASIL Document 'SPDX Reference Document NestedDoc#5d6e0Bb8' with ID 3"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:4",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "SPDX Reference Document NestedNestedDoc#328c606A",
+      "comment": "BASIL Document ID 4",
+      "description": "Reference documentation for SPDX compliance",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "27c94ee697cc1fb8b2ea8b054fefe317"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:4",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:documents:4",
+          "comment": "BASIL Document 'SPDX Reference Document NestedNestedDoc#328c606A' with ID 4"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:document:2",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "documentation",
+      "name": "SPDX Reference Document APIDoc#Af4cF0aA",
+      "comment": "BASIL Document ID 2",
+      "description": "Reference documentation for SPDX compliance",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "068dcf8ebe8e0df0dba2de25687a00f7"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:document:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:documents:2",
+          "comment": "BASIL Document 'SPDX Reference Document APIDoc#Af4cF0aA' with ID 2"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:justification:1",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "justification 1",
+      "comment": "BASIL Justification ID 1",
+      "description": "Justification for SPDX test requirements Compliance#7F5dE2fF",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "b12a66d758a424766b56de601c3ac9bc"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:justification:1",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:justifications:1",
+          "comment": "BASIL Justification with ID 1"
+        }
+      ]
+    },
+    {
+      "type": "software_File",
+      "spdxId": "spdx:file:basil:justification:2",
+      "software_copyrightText": "",
+      "software_primaryPurpose": "evidence",
+      "name": "justification 2",
+      "comment": "BASIL Justification ID 2",
+      "description": "Justification for SPDX test requirements Performance#563281A8",
+      "verifiedUsing": [
+        {
+          "type": "Hash",
+          "algorithm": "md5",
+          "hashValue": "abc8dc831556be019bbbc508d994243a"
+        }
+      ],
+      "creationInfo": "_:creation_info_spdx:file:basil:justification:2",
+      "externalIdentifier": [
+        {
+          "type": "ExternalIdentifier",
+          "externalIdentifierType": "other",
+          "identifier": "basil:justifications:2",
+          "comment": "BASIL Justification with ID 2"
+        }
+      ]
+    },
+    {
+      "type": "software_Sbom",
+      "spdxId": "spdx:sbom:basil:export:ut_spdx_library",
+      "name": "BASIL SBOM export for library ut_spdx_library",
+      "rootElement": [
+        "spdx:file:basil:library:ut_spdx_library"
+      ],
+      "creationInfo": "_:sbom_creation_info",
+      "element": [
+        "spdx:file:basil:library:ut_spdx_library",
+        "spdx:file:basil:api:1"
+      ],
+      "software_sbomType": [
+        "design",
+        "source"
+      ],
+      "profileConformance": [
+        "core",
+        "software"
+      ]
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:1",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 40,
+        "endIntegerRange": 68
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:1"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:2",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 126,
+        "endIntegerRange": 155
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:2"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:3",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 213,
+        "endIntegerRange": 241
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:3"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:4",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 283,
+        "endIntegerRange": 308
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:4"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:5",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 355,
+        "endIntegerRange": 382
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:5"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:6",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 405,
+        "endIntegerRange": 432
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:6"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:7",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 4,
+        "endIntegerRange": 21
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:7"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:8",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 91,
+        "endIntegerRange": 116
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:8"
+    },
+    {
+      "type": "software_Snippet",
+      "spdxId": "spdx:snippet:api:1:9",
+      "name": "/tmp/tmpbpne8pbl",
+      "comment": "Snippet of api ut_spdx_api#ad7fCDDC reference document",
+      "description": "",
+      "software_byteRange": {
+        "type": "PositiveIntegerRange",
+        "beginIntegerRange": 328,
+        "endIntegerRange": 352
+      },
+      "software_snippetFromFile": "spdx:file:basil:api:reference-document:1",
+      "creationInfo": "_:creation_info_spdx:snippet:api:1:9"
+    }
+  ],
+  "signature": {
+    "algorithm": "HS256",
+    "value": "AavVH7IpP-87JXssP2aE9S6itIcLxrw0eLPI9du6TPw"
+  },
+  "signatures": [
+    {
+      "hash_algorithm": "sha-256",
+      "algorithm": "HS256",
+      "value": "AavVH7IpP-87JXssP2aE9S6itIcLxrw0eLPI9du6TPw",
+      "thumbprint": "ynQBIaoI4tQJJcf3MInEOCGwXgpodB_pey9OBngZ7B4",
+      "comment": "BASIL SBOM author signature attributable to ut_user_name"
+    }
+  ]
+}
